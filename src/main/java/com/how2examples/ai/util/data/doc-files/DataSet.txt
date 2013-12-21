@@ -1,0 +1,18 @@
+@startuml DataSet.png
+hide members
+
+class DelimitedTextFileReader {
++readCommaSeperated(File)
++readTabSeperated(File)
+}
+show DelimitedTextFileReader method
+class DataDivider {
++getTrainingSet()
++getTestSet()
+}
+show DataDivider method
+DelimitedTextFileReader ..> DataSet
+DataSet o-- DataSetRow
+DataDivider o-- DataSetRow
+
+@enduml

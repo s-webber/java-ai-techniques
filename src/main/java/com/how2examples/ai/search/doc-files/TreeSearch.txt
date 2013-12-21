@@ -1,0 +1,34 @@
+@startuml TreeSearch.png
+hide members
+
+class TreeSearch {
++search(T)
+}
+show TreeSearch method
+TreeSearch o-- TreeSearchStrategy
+
+interface TreeSearchStrategy
+TreeSearchStrategy <|-- DepthFirstSearchStrategy
+DepthFirstSearchStrategy <|-- DepthLimitedSearchStrategy
+TreeSearchStrategy <|-- BreadthFirstSearchStrategy
+TreeSearchStrategy <|-- AStarSearchStrategy
+TreeSearchStrategy <|-- GreedySearchStrategy
+
+interface BlindSearchNode
+interface HeuristicSearchNode
+BlindSearchNode <|-right- HeuristicSearchNode
+
+AStarSearchStrategy ..> HeuristicSearchNode
+GreedySearchStrategy ..> HeuristicSearchNode
+BreadthFirstSearchStrategy ..> BlindSearchNode
+DepthFirstSearchStrategy ..> BlindSearchNode
+
+namespace com.how2examples.ai.problem.queens {
+.HeuristicSearchNode <|-- EightQueensNode
+}
+
+namespace com.how2examples.ai.problem.tiles {
+.HeuristicSearchNode <|-- EightTilesNode
+}
+
+@enduml
