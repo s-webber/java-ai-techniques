@@ -1,4 +1,4 @@
-java-ai-techniques - Java implementations of common artificial intelligence techniques.
+java-ai-techniques
 ==================
 
 This project contains basic examples of common artificial intelligence (AI) algorithms and data structures.
