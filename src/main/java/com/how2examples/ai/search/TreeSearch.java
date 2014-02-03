@@ -9,7 +9,7 @@ import java.util.HashSet;
  */
 public class TreeSearch {
    public static <T extends BlindSearchNode> T search(final T root, final TreeSearchStrategy<T> strategy) {
-      final HashSet<T> alreadyVisited = new HashSet<T>(10000);
+      final HashSet<T> alreadyVisited = new HashSet<>(10000);
       T current;
 
       strategy.add(root);

@@ -18,7 +18,7 @@ public class DelimitedTextFileReaderTest extends TestCase {
    public void testCsv() throws Exception {
       final String header = "a,b,c,d,e\n";
       // input includes a mixture of letters, numbers and other characters (including whitespace) - plus empty elements
-      final String[] input = {"1.04,2,3_3,4e0,5\n", "qwe\trty,!\"£$()-+={}[];@~#/?><.,,r t|yu/i,%^&*t\n", "z,x,c,v b N m,b\n"};
+      final String[] input = {"1.04,2,3_3,4e0,5\n", "qwe\trty,!\"$()-+={}[];@~#/?><.,,r t|yu/i,%^&*t\n", "z,x,c,v b N m,b\n"};
       final StringBuilder fileContents = new StringBuilder(header);
       for (final String s : input) {
          fileContents.append(s);

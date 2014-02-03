@@ -17,7 +17,7 @@ public class DataSetTest extends TestCase {
 
    @SuppressWarnings("unchecked")
    private <E> ImmutableArray<E> toImmutableArray(E... elements) {
-      return new ImmutableArray<E>(elements);
+      return new ImmutableArray<>(elements);
    }
 
    private DataSetRow row(String... data) {

@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * <img src="doc-files/TreeSearch.png">
  */
 public class BreadthFirstSearchStrategy<T extends BlindSearchNode> implements TreeSearchStrategy<T> {
-   ArrayList<T> l = new ArrayList<T>();
+   ArrayList<T> l = new ArrayList<>();
 
    @Override
    public T removeNext() {

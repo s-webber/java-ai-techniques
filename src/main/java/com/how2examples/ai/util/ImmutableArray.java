@@ -27,7 +27,7 @@ public class ImmutableArray<E> implements Iterable<E> {
    }
 
    public ImmutableArray(final Collection<E> elements) {
-      this.elements = new ArrayList<E>(elements);
+      this.elements = new ArrayList<>(elements);
    }
 
    public E get(final int idx) {

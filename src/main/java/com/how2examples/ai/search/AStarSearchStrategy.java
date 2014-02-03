@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * <img src="doc-files/TreeSearch.png">
  */
 public class AStarSearchStrategy<T extends HeuristicSearchNode> implements TreeSearchStrategy<T> {
-   private final ArrayList<T> l = new ArrayList<T>();
+   private final ArrayList<T> l = new ArrayList<>();
 
    @Override
    public T removeNext() {
@@ -31,7 +31,7 @@ public class AStarSearchStrategy<T extends HeuristicSearchNode> implements TreeS
       l.add(newNode);
    }
 
-   public static int getCostSoFar(HeuristicSearchNode n) {
+   private static int getCostSoFar(HeuristicSearchNode n) {
       HeuristicSearchNode p = n.getParent();
       if (p == null) {
          return n.nodeCost();

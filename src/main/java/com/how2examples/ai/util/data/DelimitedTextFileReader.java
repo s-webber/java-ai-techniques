@@ -31,21 +31,21 @@ public class DelimitedTextFileReader {
     * @return A {@link DataSet} representing the comma-separated values read from the specified file.
     */
    public static DataSet readCommaSeperated(final File inputCsvFile) throws Exception {
-      final FileReader fr = new FileReader(inputCsvFile);
-      final BufferedReader br = new BufferedReader(fr);
-      String next = br.readLine();
-      final String[] keys = next.split(DELIMETER);
-      final List<DataSetRow> values = new ArrayList<DataSetRow>();
-      while ((next = br.readLine()) != null) {
-         if (!isBlank(next) && !isComment(next)) {
-            final String value[] = next.split(DELIMETER);
-            if (value.length != keys.length) {
-               throw new RuntimeException("Line has different number of elements than header: " + next);
+      try (final FileReader fr = new FileReader(inputCsvFile); final BufferedReader br = new BufferedReader(fr)) {
+         String next = br.readLine();
+         final String[] keys = next.split(DELIMETER);
+         final List<DataSetRow> values = new ArrayList<>();
+         while ((next = br.readLine()) != null) {
+            if (!isBlank(next) && !isComment(next)) {
+               final String value[] = next.split(DELIMETER);
+               if (value.length != keys.length) {
+                  throw new RuntimeException("Line has different number of elements than header: " + next);
+               }
+               values.add(new DataSetRow(value));
             }
-            values.add(new DataSetRow(value));
          }
+         return new DataSet(new ImmutableArray<String>(keys), new ImmutableArray<DataSetRow>(values));
       }
-      return new DataSet(new ImmutableArray<String>(keys), new ImmutableArray<DataSetRow>(values));
    }
 
    private static boolean isBlank(String next) {

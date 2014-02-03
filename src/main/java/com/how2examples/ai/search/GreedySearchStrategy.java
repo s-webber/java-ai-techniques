@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * <img src="doc-files/TreeSearch.png">
  */
 public class GreedySearchStrategy<T extends HeuristicSearchNode> implements TreeSearchStrategy<T> {
-   private final ArrayList<T> l = new ArrayList<T>();
+   private final ArrayList<T> l = new ArrayList<>();
 
    @Override
    public T removeNext() {

@@ -9,7 +9,7 @@ public class ImmutableArrayTest extends TestCase {
    private static final String FIRST = "first";
    private static final String SECOND = "second";
    private static final String THIRD = "third";
-   private static final ImmutableArray<String> TEST_OBJECT = new ImmutableArray<String>(new String[] {FIRST, SECOND, THIRD});
+   private static final ImmutableArray<String> TEST_OBJECT = new ImmutableArray<>(new String[] {FIRST, SECOND, THIRD});
 
    public void testEmptyImmutableArray() {
       assertEquals(0, ImmutableArray.EMPTY_IMMUTABLE_ARRAY.size());
