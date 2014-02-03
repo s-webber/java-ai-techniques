@@ -1,0 +1,26 @@
+@startuml HierarchicalClusterer.png
+hide members
+
+class HierarchicalClusterer {
++cluster(DataSet) 
+}
+show HierarchicalClusterer method
+HierarchicalClusterer ..> HierarchicalCluster
+HierarchicalClusterer o-- ClusterPairDistanceCache
+
+interface HierarchicalCluster
+class LeafCluster
+class ParentCluster
+HierarchicalCluster <|-- LeafCluster
+HierarchicalCluster <|-- ParentCluster
+ParentCluster o-- HierarchicalCluster
+
+class ClusterPairDistanceCache
+ClusterPairDistanceCache o-- ClusterPair
+ClusterPairDistanceCache o-- DistanceFunction
+
+interface DistanceFunction
+class EuclideanFunction
+DistanceFunction <|-- EuclideanFunction
+
+@enduml

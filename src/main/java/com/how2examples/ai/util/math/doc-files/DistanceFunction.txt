@@ -1,0 +1,10 @@
+@startuml DistanceFunction.png
+hide members
+
+interface DistanceFunction {
++calculate(double[],double[])
+}
+show DistanceFunction method
+DistanceFunction <|-- EuclideanFunction
+
+@enduml
