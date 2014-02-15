@@ -1,0 +1,10 @@
+Age,Income,Credit history,Savings,Risk
+<30,<10k,Unknown,None,High
+30-50,10-20k,Bad,<1k,High
+>50,40-60k,Good,1-10k,Low
+>50,20-40k,Good,<1k,Medium
+<30,>60,Good,1-10k,Low
+>50,20-40k,Bad,1-10k,High
+>50,20-40k,Unknown,1-10k,Medium
+>50,20-40k,Bad,1-10k,High
+30-50,20-40k,Good,<1k,Medium
