@@ -1,6 +1,11 @@
 package com.how2examples.ai.search;
 
 class DummyHeuristicSearchNode implements HeuristicSearchNode {
+   /**
+    * Maintains a record of the order in which nodes have actually been searched.
+    * <p>
+    * (So tests can compare against expected order.)
+    */
    private final StringBuilder sequence = new StringBuilder();
 
    private final String id;
