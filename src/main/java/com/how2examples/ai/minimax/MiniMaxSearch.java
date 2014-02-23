@@ -1,7 +1,14 @@
 package com.how2examples.ai.minimax;
 
-
-/** Determines the best next move a specified state of a two-player zero-sum game. */
+/**
+ * Determines the best next move for a specified state of a two-player zero-sum game.
+ * <p>
+ * The minimax strategy attempts to minimise the negative cost for a worst case scenario. The basis for the minimax
+ * strategy is the assumption that the opposition will always choose the move that gives them the best chance of a
+ * positive outcome (i.e. maximises their chances of winning).
+ * <p>
+ * <img src="doc-files/MiniMax.png">
+ */
 public class MiniMaxSearch {
    private static int WORST_POSSIBLE_OUTCOME = Integer.MIN_VALUE;
 

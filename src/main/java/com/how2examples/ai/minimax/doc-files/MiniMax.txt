@@ -1,0 +1,13 @@
+@startuml MiniMax.png
+hide members
+
+class MiniMaxSearch {
+}
+interface MiniMaxNode {
+}
+MiniMaxSearch ..> MiniMaxNode
+namespace com.how2examples.ai.problem.noughtsandcrosses {
+.MiniMaxNode <|-- NoughtsAndCrossesNode
+}
+
+@enduml
