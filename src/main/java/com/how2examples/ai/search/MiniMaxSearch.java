@@ -1,32 +1,31 @@
 package com.how2examples.ai.search;
 
-import static java.lang.Integer.MAX_VALUE;
-import static java.lang.Integer.MIN_VALUE;
-
-/**
- * Determines the best next move a specified state of a two-player zero-sum game.
- */
+/** Determines the best next move a specified state of a two-player zero-sum game. */
 public class MiniMaxSearch {
+   private static int WORST_POSSIBLE_OUTCOME = Integer.MIN_VALUE;
+
    /**
-    * Convenient alternative to: {@link MiniMaxSearch#minimax(currentGameState, Integer.MAX_VALUE)}
+    * Convenient alternative to: {@link MiniMaxSearch#minimax(currentGameState, playerToMoveNext, Integer.MAX_VALUE)}
     */
-   public static MiniMaxNode minimax(final MiniMaxNode currentGameState) {
-      return minimax(currentGameState, MAX_VALUE);
+   public static MiniMaxNode minimax(final MiniMaxNode currentGameState, final MiniMaxPlayer playerToMoveNext) {
+      return minimax(currentGameState, playerToMoveNext, Integer.MAX_VALUE);
    }
 
    /**
     * Returns the best possible next move from the specified game state.
     * 
     * @param currentGameState the current state of the game
-    * @param depth the maximum depth of the game tree to search
+    * @param depth the maximum depth of the game tree to search. A negative value indicates that there should be no
+    * depth limit.
     * @return the best possible next move
     */
-   public static MiniMaxNode minimax(final MiniMaxNode currentGameState, final int depth) {
-      int bestOutcomeValue = MIN_VALUE;
+   public static MiniMaxNode minimax(final MiniMaxNode currentGameState, final MiniMaxPlayer playerToMoveNext, final int depth) {
+      int bestOutcomeValue = WORST_POSSIBLE_OUTCOME;
       MiniMaxNode bestMove = null;
 
       for (final MiniMaxNode possibleMove : currentGameState.getChildren()) {
-         final int moveOutcomeValue = search(possibleMove, depth, Mode.MIN);
+         final MiniMaxNode moveOutcome = search(possibleMove, playerToMoveNext.getOpponent(), depth);
+         final int moveOutcomeValue = moveOutcome.getGoodness(playerToMoveNext);
          if (moveOutcomeValue >= bestOutcomeValue) {
             bestOutcomeValue = moveOutcomeValue;
             bestMove = possibleMove;
@@ -36,48 +35,30 @@ public class MiniMaxSearch {
       return bestMove;
    }
 
-   private static int search(final MiniMaxNode n, final int remainingDepth, final Mode mode) {
+   private static MiniMaxNode search(final MiniMaxNode n, final MiniMaxPlayer playerToMoveNext, final int remainingDepth) {
+      if (remainingDepth == 0) {
+         // if reached depth limit than stop searching
+         return n;
+      }
+
       final MiniMaxNode[] children = n.getChildren();
       if (children.length == 0) {
-         // if no children then return own "goodness" rating
-         return n.getGoodness();
+         return n;
       } else {
-         // return best outcome of children
-         final boolean reachedLimit = remainingDepth == 0;
-         int bestOutcome = mode.worstPossibleOutcome;
+         // return best child move (from the point of view of the player who gets to choose it)
+         int bestOutcomeValue = WORST_POSSIBLE_OUTCOME;
+         MiniMaxNode bestMove = null;
+
          for (final MiniMaxNode child : children) {
-            final int childGoodness;
-            if (reachedLimit) {
-               childGoodness = child.getGoodness();
-            } else {
-               childGoodness = search(child, remainingDepth - 1, mode.alternativeMode());
+            final MiniMaxNode moveOutcome = search(child, playerToMoveNext.getOpponent(), remainingDepth - 1);
+            final int moveOutcomeValue = moveOutcome.getGoodness(playerToMoveNext);
+            if (moveOutcomeValue >= bestOutcomeValue) {
+               bestOutcomeValue = moveOutcomeValue;
+               bestMove = moveOutcome;
             }
-            bestOutcome = mode.getBestOutcome(childGoodness, bestOutcome);
          }
-         return bestOutcome;
-      }
-   }
 
-   private static enum Mode {
-      MIN(MAX_VALUE),
-      MAX(MIN_VALUE);
-
-      final int worstPossibleOutcome;
-
-      Mode(final int value) {
-         this.worstPossibleOutcome = value;
-      }
-
-      Mode alternativeMode() {
-         return this == MIN ? MAX : MIN;
-      }
-
-      int getBestOutcome(final int o1, final int o2) {
-         if (this == MAX) {
-            return Math.max(o1, o2);
-         } else {
-            return Math.min(o1, o2);
-         }
+         return bestMove;
       }
    }
 }
