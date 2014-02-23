@@ -14,7 +14,7 @@ import java.util.Map;
 
 import junit.framework.TestCase;
 
-import com.how2examples.ai.search.MiniMaxPlayer;
+import com.how2examples.ai.minimax.MiniMaxPlayer;
 
 public class NoughtsAndCrossesNodeTest extends TestCase {
    /** On first move, all 9 squares should be suggested as potential next moves */

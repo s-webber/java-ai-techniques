@@ -1,4 +1,5 @@
-package com.how2examples.ai.search;
+package com.how2examples.ai.minimax;
+
 
 /** A node (state) in a minimax search tree. */
 public interface MiniMaxNode {

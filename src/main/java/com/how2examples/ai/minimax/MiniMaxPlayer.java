@@ -1,4 +1,4 @@
-package com.how2examples.ai.search;
+package com.how2examples.ai.minimax;
 
 public enum MiniMaxPlayer {
    PLAYER_1,

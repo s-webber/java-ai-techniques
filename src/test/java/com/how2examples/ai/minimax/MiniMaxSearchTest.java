@@ -1,12 +1,16 @@
-package com.how2examples.ai.search;
+package com.how2examples.ai.minimax;
 
-import static com.how2examples.ai.search.MiniMaxPlayer.PLAYER_1;
-import static com.how2examples.ai.search.MiniMaxPlayer.PLAYER_2;
-import static com.how2examples.ai.search.MiniMaxSearch.minimax;
+import static com.how2examples.ai.minimax.MiniMaxPlayer.PLAYER_1;
+import static com.how2examples.ai.minimax.MiniMaxPlayer.PLAYER_2;
+import static com.how2examples.ai.minimax.MiniMaxSearch.minimax;
 import junit.framework.TestCase;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
+
+import com.how2examples.ai.minimax.MiniMaxNode;
+import com.how2examples.ai.minimax.MiniMaxPlayer;
+import com.how2examples.ai.minimax.MiniMaxSearch;
 
 public class MiniMaxSearchTest extends TestCase {
    private final Mockery context = new Mockery();

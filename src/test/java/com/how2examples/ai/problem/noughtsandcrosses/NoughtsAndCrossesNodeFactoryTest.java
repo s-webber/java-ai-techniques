@@ -1,5 +1,7 @@
 package com.how2examples.ai.problem.noughtsandcrosses;
 
+import static com.how2examples.ai.minimax.MiniMaxPlayer.PLAYER_1;
+import static com.how2examples.ai.minimax.MiniMaxPlayer.PLAYER_2;
 import static com.how2examples.ai.problem.noughtsandcrosses.NoughtsAndCrossesNodeFactory.createNoughtsAndCrossesNode;
 import static com.how2examples.ai.problem.noughtsandcrosses.Square.BOTTOM_CENTRE;
 import static com.how2examples.ai.problem.noughtsandcrosses.Square.BOTTOM_LEFT;
@@ -10,8 +12,6 @@ import static com.how2examples.ai.problem.noughtsandcrosses.Square.MIDDLE_RIGHT;
 import static com.how2examples.ai.problem.noughtsandcrosses.Square.TOP_CENTRE;
 import static com.how2examples.ai.problem.noughtsandcrosses.Square.TOP_LEFT;
 import static com.how2examples.ai.problem.noughtsandcrosses.Square.TOP_RIGHT;
-import static com.how2examples.ai.search.MiniMaxPlayer.PLAYER_1;
-import static com.how2examples.ai.search.MiniMaxPlayer.PLAYER_2;
 import static java.util.EnumSet.complementOf;
 import static java.util.EnumSet.noneOf;
 import static java.util.EnumSet.of;
@@ -21,7 +21,7 @@ import java.util.Map;
 
 import junit.framework.TestCase;
 
-import com.how2examples.ai.search.MiniMaxPlayer;
+import com.how2examples.ai.minimax.MiniMaxPlayer;
 
 public class NoughtsAndCrossesNodeFactoryTest extends TestCase {
    public void testEmpty1() {

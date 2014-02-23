@@ -14,8 +14,8 @@ import java.util.EnumSet;
 
 import junit.framework.TestCase;
 
-import com.how2examples.ai.search.MiniMaxPlayer;
-import com.how2examples.ai.search.MiniMaxSearch;
+import com.how2examples.ai.minimax.MiniMaxPlayer;
+import com.how2examples.ai.minimax.MiniMaxSearch;
 
 public class NoughtsAndCrossesMiniMaxTest extends TestCase {
 

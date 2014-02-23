@@ -1,8 +1,8 @@
 package com.how2examples.ai.problem.noughtsandcrosses;
 
+import static com.how2examples.ai.minimax.MiniMaxPlayer.PLAYER_1;
+import static com.how2examples.ai.minimax.MiniMaxPlayer.PLAYER_2;
 import static com.how2examples.ai.problem.noughtsandcrosses.Lines.hasLine;
-import static com.how2examples.ai.search.MiniMaxPlayer.PLAYER_1;
-import static com.how2examples.ai.search.MiniMaxPlayer.PLAYER_2;
 import static java.util.EnumSet.complementOf;
 import static java.util.EnumSet.copyOf;
 import static java.util.EnumSet.noneOf;
@@ -14,8 +14,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.how2examples.ai.search.MiniMaxNode;
-import com.how2examples.ai.search.MiniMaxPlayer;
+import com.how2examples.ai.minimax.MiniMaxNode;
+import com.how2examples.ai.minimax.MiniMaxPlayer;
 
 /**
  * Represents a game-state of a noughts and crosses game.

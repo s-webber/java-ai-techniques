@@ -1,14 +1,14 @@
 package com.how2examples.ai.problem.noughtsandcrosses;
 
-import static com.how2examples.ai.search.MiniMaxPlayer.PLAYER_1;
-import static com.how2examples.ai.search.MiniMaxPlayer.PLAYER_2;
+import static com.how2examples.ai.minimax.MiniMaxPlayer.PLAYER_1;
+import static com.how2examples.ai.minimax.MiniMaxPlayer.PLAYER_2;
 import static java.util.EnumSet.noneOf;
 
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.Map;
 
-import com.how2examples.ai.search.MiniMaxPlayer;
+import com.how2examples.ai.minimax.MiniMaxPlayer;
 
 class NoughtsAndCrossesNodeFactory {
    private static final int NUMBER_OF_SQUARES = Square.values().length;

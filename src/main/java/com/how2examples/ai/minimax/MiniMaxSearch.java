@@ -1,4 +1,5 @@
-package com.how2examples.ai.search;
+package com.how2examples.ai.minimax;
+
 
 /** Determines the best next move a specified state of a two-player zero-sum game. */
 public class MiniMaxSearch {
