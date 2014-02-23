@@ -23,6 +23,10 @@ GreedySearchStrategy ..> HeuristicSearchNode
 BreadthFirstSearchStrategy ..> BlindSearchNode
 DepthFirstSearchStrategy ..> BlindSearchNode
 
+namespace com.how2examples.ai.problem.bridgecrossing {
+.HeuristicSearchNode <|-- BridgeCrossingNode
+}
+
 namespace com.how2examples.ai.problem.queens {
 .HeuristicSearchNode <|-- EightQueensNode
 }
