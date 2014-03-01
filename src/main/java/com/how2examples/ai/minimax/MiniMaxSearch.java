@@ -32,7 +32,7 @@ public class MiniMaxSearch {
       MiniMaxNode bestMove = null;
 
       for (final MiniMaxNode possibleMove : currentGameState.getChildren()) {
-         final MiniMaxNode moveOutcome = search(possibleMove, playerToMoveNext.getOpponent(), depth);
+         final MiniMaxNode moveOutcome = getExpectedOutcome(possibleMove, playerToMoveNext.getOpponent(), depth);
          final int moveOutcomeValue = moveOutcome.getGoodness(playerToMoveNext);
          if (moveOutcomeValue >= bestOutcomeValue) {
             bestOutcomeValue = moveOutcomeValue;
@@ -43,7 +43,10 @@ public class MiniMaxSearch {
       return bestMove;
    }
 
-   private static MiniMaxNode search(final MiniMaxNode n, final MiniMaxPlayer playerToMoveNext, final int remainingDepth) {
+   /**
+    * Returns the expected final outcome that would result from the specified game state ({@code n}).
+    */
+   private static MiniMaxNode getExpectedOutcome(final MiniMaxNode n, final MiniMaxPlayer playerToMoveNext, final int remainingDepth) {
       if (remainingDepth == 0) {
          // if reached depth limit than stop searching
          return n;
@@ -58,7 +61,7 @@ public class MiniMaxSearch {
          MiniMaxNode bestMove = null;
 
          for (final MiniMaxNode child : children) {
-            final MiniMaxNode moveOutcome = search(child, playerToMoveNext.getOpponent(), remainingDepth - 1);
+            final MiniMaxNode moveOutcome = getExpectedOutcome(child, playerToMoveNext.getOpponent(), remainingDepth - 1);
             final int moveOutcomeValue = moveOutcome.getGoodness(playerToMoveNext);
             if (moveOutcomeValue >= bestOutcomeValue) {
                bestOutcomeValue = moveOutcomeValue;
