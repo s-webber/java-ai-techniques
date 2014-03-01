@@ -16,7 +16,7 @@ import com.how2examples.ai.search.TreeSearch;
 /**
  * Uses {@link AStarSearchStrategy} to solve the bridge crossing problem represented by {@link BridgeCrossingNode}.
  */
-public class BridgeCrossingNodeAStarTest extends TestCase {
+public class BridgeCrossingAStarTest extends TestCase {
    private static final int TARGET_TIME = 17;
 
    public void test() {
