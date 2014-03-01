@@ -23,11 +23,6 @@ public class BreadthFirstSearchStrategy<T extends BlindSearchNode> implements Tr
    }
 
    @Override
-   public boolean contains(T n) {
-      return l.contains(n);
-   }
-
-   @Override
    public boolean isEmpty() {
       return l.isEmpty();
    }

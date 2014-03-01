@@ -25,11 +25,6 @@ public class DepthFirstSearchStrategy<T extends BlindSearchNode> implements Tree
    }
 
    @Override
-   public boolean contains(T n) {
-      return l.contains(n);
-   }
-
-   @Override
    public boolean isEmpty() {
       return l.isEmpty();
    }

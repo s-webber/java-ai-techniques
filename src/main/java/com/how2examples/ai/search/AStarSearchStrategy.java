@@ -41,11 +41,6 @@ public class AStarSearchStrategy<T extends HeuristicSearchNode> implements TreeS
    }
 
    @Override
-   public boolean contains(T n) {
-      return l.contains(n);
-   }
-
-   @Override
    public boolean isEmpty() {
       return l.isEmpty();
    }

@@ -28,9 +28,7 @@ public class TreeSearch {
       @SuppressWarnings("unchecked")
       final T[] children = (T[]) parent.getChildren();
       for (final T child : children) {
-         if (!strategy.contains(child)) {
-            strategy.add(child);
-         }
+         strategy.add(child);
       }
    }
 }

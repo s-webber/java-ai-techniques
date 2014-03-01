@@ -31,11 +31,6 @@ public class GreedySearchStrategy<T extends HeuristicSearchNode> implements Tree
    }
 
    @Override
-   public boolean contains(T n) {
-      return l.contains(n);
-   }
-
-   @Override
    public boolean isEmpty() {
       return l.isEmpty();
    }

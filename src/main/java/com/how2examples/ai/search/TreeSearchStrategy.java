@@ -12,7 +12,5 @@ public interface TreeSearchStrategy<T extends BlindSearchNode> {
 
    void add(T n);
 
-   boolean contains(T n);
-
    boolean isEmpty();
 }
