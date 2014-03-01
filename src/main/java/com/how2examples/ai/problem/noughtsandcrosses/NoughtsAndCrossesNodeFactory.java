@@ -13,10 +13,21 @@ import com.how2examples.ai.minimax.MiniMaxPlayer;
 class NoughtsAndCrossesNodeFactory {
    private static final int NUMBER_OF_SQUARES = Square.values().length;
 
+   /**
+    * Returns a new {@link NoughtsAndCrossesNode} representing the start state of a new game (i.e. an empty grid).
+    */
    static NoughtsAndCrossesNode createNoughtsAndCrossesNode() {
       return new NoughtsAndCrossesNode(createEmptyState());
    }
 
+   /**
+    * Returns a new {@link NoughtsAndCrossesNode} representing the state described by the specified argument.
+    * 
+    * @param board description of the game-state the new {@link NoughtsAndCrossesNode} should represent. Must be 9
+    * characters in length with each character representing the contents of one of the squares that make up the grid.
+    * Each character must be one of: a 'x' (to represent a cross), a 'o' (to represent a nought) or a '-' (to represent
+    * an unoccupied (i.e. blank/free) square).
+    */
    static NoughtsAndCrossesNode createNoughtsAndCrossesNode(String board) {
       if (board.length() != NUMBER_OF_SQUARES) {
          throw new IllegalArgumentException(board);
