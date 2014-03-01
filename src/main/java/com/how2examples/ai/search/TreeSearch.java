@@ -1,7 +1,5 @@
 package com.how2examples.ai.search;
 
-import java.util.HashSet;
-
 /**
  * Searches a tree data structure using the specified {@link TreeSearchStrategy}.
  * <p>
@@ -16,19 +14,23 @@ public class TreeSearch {
          current = strategy.removeNext();
 
          if (current.isGoal()) {
-            // return goal state
             return current;
          }
 
-         @SuppressWarnings("unchecked")
-         final T[] children = (T[]) current.getChildren();
-         for (final T child : children) {
-            if (!strategy.contains(child)) {
-               strategy.add(child);
-            }
-         }
+         addChildren(current, strategy);
       }
+
       // cannot find goal
       return null;
+   }
+
+   private static <T extends BlindSearchNode> void addChildren(T parent, TreeSearchStrategy<T> strategy) {
+      @SuppressWarnings("unchecked")
+      final T[] children = (T[]) parent.getChildren();
+      for (final T child : children) {
+         if (!strategy.contains(child)) {
+            strategy.add(child);
+         }
+      }
    }
 }
