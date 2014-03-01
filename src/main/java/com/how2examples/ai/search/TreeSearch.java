@@ -9,7 +9,6 @@ import java.util.HashSet;
  */
 public class TreeSearch {
    public static <T extends BlindSearchNode> T search(final T root, final TreeSearchStrategy<T> strategy) {
-      final HashSet<T> alreadyVisited = new HashSet<>(10000);
       T current;
 
       strategy.add(root);
@@ -24,12 +23,10 @@ public class TreeSearch {
          @SuppressWarnings("unchecked")
          final T[] children = (T[]) current.getChildren();
          for (final T child : children) {
-            if (!strategy.contains(child) && !alreadyVisited.contains(child)) {
+            if (!strategy.contains(child)) {
                strategy.add(child);
             }
          }
-
-         alreadyVisited.add(current);
       }
       // cannot find goal
       return null;
