@@ -1,6 +1,7 @@
 package com.how2examples.ai.util.math;
 
 public class VectorFunctions {
+   /** Returns the mean average of an array of vectors. */
    public static double[] averageVectors(final double[][] vectors) {
       if (vectors.length == 0) {
          throw new IllegalArgumentException("array length is 0");
@@ -28,6 +29,7 @@ public class VectorFunctions {
       return copy;
    }
 
+   /** @throws IllegalArgumentException if the specified arrays are of different lengths */
    static void assertArrayLengthsMatch(final double[] v1, final double[] v2) {
       if (v1.length != v2.length) {
          throw new IllegalArgumentException("Array lengths differ: " + v1.length + " != " + v2.length);

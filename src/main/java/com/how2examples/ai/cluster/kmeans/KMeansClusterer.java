@@ -15,7 +15,7 @@ import com.how2examples.ai.util.math.VectorFunctions;
 /**
  * Builds a collection of {@link KMeansCluster} objects based on a {@link DataSet}.
  * <p>
- * The data-set will be partitioned into a predefined numbered of clusters. Each row of the data-set will be associated
+ * The data-set will be partitioned into a predefined numbered of discrete clusters. Each row of the data-set will be associated
  * with one, and only one, cluster.
  */
 public class KMeansClusterer {
