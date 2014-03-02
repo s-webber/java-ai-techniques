@@ -19,10 +19,10 @@ public class GreedySearchStrategy<T extends HeuristicSearchNode> implements Tree
 
    @Override
    public void add(T newNode) {
-      int newNodeCost = newNode.estimateCostToGoal();
+      int newNodeCost = newNode.getEstimatedCostToGoal();
       for (int i = 0; i < l.size(); i++) {
          HeuristicSearchNode existingNode = l.get(i);
-         if (newNodeCost < existingNode.estimateCostToGoal()) {
+         if (newNodeCost < existingNode.getEstimatedCostToGoal()) {
             l.add(i, newNode);
             return;
          }

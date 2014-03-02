@@ -19,10 +19,10 @@ public class AStarSearchStrategy<T extends HeuristicSearchNode> implements TreeS
 
    @Override
    public void add(T newNode) {
-      final int newNodeEstimatedCostOfTotalSolution = getCostSoFar(newNode) + newNode.estimateCostToGoal();
+      final int newNodeEstimatedCostOfTotalSolution = getCostSoFar(newNode) + newNode.getEstimatedCostToGoal();
       for (int i = 0; i < l.size(); i++) {
          final T existingNode = l.get(i);
-         final int existingNodeEstimatedCostOfTotalSolution = getCostSoFar(existingNode) + existingNode.estimateCostToGoal();
+         final int existingNodeEstimatedCostOfTotalSolution = getCostSoFar(existingNode) + existingNode.getEstimatedCostToGoal();
          if (newNodeEstimatedCostOfTotalSolution < existingNodeEstimatedCostOfTotalSolution) {
             l.add(i, newNode);
             return;
@@ -34,9 +34,9 @@ public class AStarSearchStrategy<T extends HeuristicSearchNode> implements TreeS
    private static int getCostSoFar(HeuristicSearchNode n) {
       HeuristicSearchNode p = n.getParent();
       if (p == null) {
-         return n.nodeCost();
+         return n.getNodeCost();
       } else {
-         return n.nodeCost() + getCostSoFar(p);
+         return n.getNodeCost() + getCostSoFar(p);
       }
    }
 

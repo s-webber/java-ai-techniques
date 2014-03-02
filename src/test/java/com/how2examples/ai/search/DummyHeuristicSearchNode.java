@@ -45,12 +45,12 @@ class DummyHeuristicSearchNode implements HeuristicSearchNode {
    }
 
    @Override
-   public int estimateCostToGoal() {
+   public int getEstimatedCostToGoal() {
       return estimatedCostToGoal;
    }
 
    @Override
-   public int nodeCost() {
+   public int getNodeCost() {
       return nodeCost;
    }
 

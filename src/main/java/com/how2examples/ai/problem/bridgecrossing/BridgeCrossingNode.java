@@ -117,7 +117,7 @@ class BridgeCrossingNode implements HeuristicSearchNode {
    }
 
    @Override
-   public int estimateCostToGoal() {
+   public int getEstimatedCostToGoal() {
       if (isGoal()) {
          return 0;
       } else {
@@ -128,7 +128,7 @@ class BridgeCrossingNode implements HeuristicSearchNode {
    }
 
    @Override
-   public int nodeCost() {
+   public int getNodeCost() {
       return previousMove == null ? 0 : previousMove.getTimeTaken();
    }
 
