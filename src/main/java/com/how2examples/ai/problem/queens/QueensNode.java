@@ -86,9 +86,4 @@ class QueensNode implements BlindSearchNode {
    public boolean isGoal() {
       return numberQueens == getBoardWidth();
    }
-
-   @Override
-   public String getId() {
-      return "EightQueensNode-" + hashCode();
-   }
 }

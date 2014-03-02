@@ -35,11 +35,6 @@ class DummyHeuristicSearchNode implements HeuristicSearchNode {
    }
 
    @Override
-   public String getId() {
-      return id;
-   }
-
-   @Override
    public DummyHeuristicSearchNode[] getChildren() {
       return children;
    }
@@ -78,7 +73,7 @@ class DummyHeuristicSearchNode implements HeuristicSearchNode {
       if (topNode.sequence.length() > 0) {
          topNode.sequence.append(", ");
       }
-      topNode.sequence.append(simpleNode.getId());
+      topNode.sequence.append(simpleNode.id);
    }
 
    String getSequence() {

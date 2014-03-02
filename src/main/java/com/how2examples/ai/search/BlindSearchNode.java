@@ -6,8 +6,6 @@ package com.how2examples.ai.search;
  * <img src="doc-files/TreeSearch.png">
  */
 public interface BlindSearchNode {
-   String getId();
-
    BlindSearchNode getParent();
 
    BlindSearchNode[] getChildren();

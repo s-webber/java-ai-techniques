@@ -57,11 +57,6 @@ class BridgeCrossingNode implements HeuristicSearchNode {
    }
 
    @Override
-   public String getId() {
-      return previousMove == null ? "Root" : previousMove.toString();
-   }
-
-   @Override
    public BridgeCrossingNode getParent() {
       return parent;
    }
