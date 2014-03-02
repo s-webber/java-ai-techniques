@@ -2,7 +2,7 @@ package com.how2examples.ai.util.math;
 
 import junit.framework.TestCase;
 
-public class MathFunctionsTest extends TestCase {
+public class VectorFunctionsTest extends TestCase {
    public void testAverageVectors() {
       final double[][] input = new double[][] { {5.3, 18, 333}, {6, -27, 800}, {10.6, 6, 1600}};
       final double[] output = VectorFunctions.averageVectors(input);
