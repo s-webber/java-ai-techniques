@@ -9,7 +9,7 @@ import com.how2examples.ai.search.BlindSearchNode;
 /**
  * Represents a particular state in an attempt to find a solution to a n-queens problem.
  * <p>
- * The n-queens problem requires placing <i>n</i> queens on an <i>n</i>×<i>n</i> chess board. A solution requires that
+ * The n-queens problem requires placing <i>n</i> queens on an <i>n</i>x<i>n</i> chess board. A solution requires that
  * no two queens share the same row, column, or diagonal.
  * </p>
  * <img src="../../search/doc-files/TreeSearch.png">
