@@ -9,7 +9,6 @@ import static com.how2examples.ai.problem.tiles.GridPosition.MIDDLE_RIGHT;
 import static com.how2examples.ai.problem.tiles.GridPosition.TOP_CENTRE;
 import static com.how2examples.ai.problem.tiles.GridPosition.TOP_LEFT;
 import static com.how2examples.ai.problem.tiles.GridPosition.TOP_RIGHT;
-import static com.how2examples.ai.problem.tiles.Tile.BLANK;
 import static java.util.EnumSet.of;
 
 import java.util.ArrayList;
@@ -102,12 +101,9 @@ class EightTilesNode implements HeuristicSearchNode {
    private int calculateCost() {
       int cost = 0;
       for (Entry<Tile, GridPosition> e : state.entrySet()) {
-         Tile t = e.getKey();
-         if (t != BLANK) {
-            GridPosition actual = e.getValue();
-            GridPosition target = GOAL.get(t);
-            cost += DISTANCES.get(actual).get(target);
-         }
+         GridPosition actual = e.getValue();
+         GridPosition target = GOAL.get(e.getKey());
+         cost += DISTANCES.get(actual).get(target);
       }
       return cost;
    }
@@ -135,13 +131,15 @@ class EightTilesNode implements HeuristicSearchNode {
 
    private EnumMap<Tile, GridPosition> createNewState(GridPosition possibleMove) {
       EnumMap<Tile, GridPosition> copy = getCopyOfState();
-      copy.put(BLANK, possibleMove);
       copy.put(getTile(possibleMove), getBlankPosition());
       return copy;
    }
 
+   /** Returns the single position on the grid that is not occupied by a Tile. */
    private GridPosition getBlankPosition() {
-      return state.get(BLANK);
+      EnumSet<GridPosition> occupied = EnumSet.copyOf(state.values());
+      EnumSet<GridPosition> unoccupied = EnumSet.complementOf(occupied);
+      return unoccupied.iterator().next();
    }
 
    private Tile getTile(GridPosition position) {

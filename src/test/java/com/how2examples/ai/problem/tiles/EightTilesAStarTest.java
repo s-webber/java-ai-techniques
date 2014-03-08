@@ -3,7 +3,6 @@ package com.how2examples.ai.problem.tiles;
 import static com.how2examples.ai.problem.tiles.EightTilesNodeTest.arrayToMap;
 import static com.how2examples.ai.problem.tiles.Tile.A;
 import static com.how2examples.ai.problem.tiles.Tile.B;
-import static com.how2examples.ai.problem.tiles.Tile.BLANK;
 import static com.how2examples.ai.problem.tiles.Tile.C;
 import static com.how2examples.ai.problem.tiles.Tile.D;
 import static com.how2examples.ai.problem.tiles.Tile.E;
@@ -22,7 +21,7 @@ import com.how2examples.ai.search.TreeSearch;
 import com.how2examples.ai.search.TreeSearchStrategy;
 
 public class EightTilesAStarTest extends TestCase {
-   private static final Tile _ = BLANK;
+   private static final Tile _ = null;
 
    private static final Tile[] GOAL = {A, B, C, D, E, F, G, H, _};
 

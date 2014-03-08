@@ -2,7 +2,6 @@ package com.how2examples.ai.problem.tiles;
 
 import static com.how2examples.ai.problem.tiles.Tile.A;
 import static com.how2examples.ai.problem.tiles.Tile.B;
-import static com.how2examples.ai.problem.tiles.Tile.BLANK;
 import static com.how2examples.ai.problem.tiles.Tile.C;
 import static com.how2examples.ai.problem.tiles.Tile.D;
 import static com.how2examples.ai.problem.tiles.Tile.E;
@@ -16,7 +15,7 @@ import junit.framework.TestCase;
 
 public class EightTilesNodeTest extends TestCase {
    private static final int NUM_GRID_POSITIONS = GridPosition.values().length;
-   private static final Tile _ = BLANK;
+   private static final Tile _ = null;
 
    public void testTopLeft() {
       Tile[] state = {_, C, B, D, A, E, F, G, H};
@@ -148,8 +147,15 @@ public class EightTilesNodeTest extends TestCase {
    static EnumMap<Tile, GridPosition> arrayToMap(Tile[] state) {
       EnumMap<Tile, GridPosition> result = new EnumMap<Tile, GridPosition>(Tile.class);
       for (int i = 0; i < NUM_GRID_POSITIONS; i++) {
-         result.put(state[i], GridPosition.values()[i]);
+         Tile tile = state[i];
+         if (isNotBlank(tile)) {
+            result.put(tile, GridPosition.values()[i]);
+         }
       }
       return result;
+   }
+
+   private static boolean isNotBlank(Tile tile) {
+      return tile != null;
    }
 }
