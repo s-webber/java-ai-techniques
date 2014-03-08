@@ -5,7 +5,7 @@ package com.how2examples.ai.ga;
  * <p>
  * See: <a href="http://en.wikipedia.org/wiki/Genetic_algorithm#Genetic_operators">Wikipedia</a>
  */
-public interface ChromosoneCreator<T extends Object> {
+public interface ChromosoneFactory<T extends Object> {
    /**
     * Returns a newly created {@link Chromosone}.
     */
