@@ -15,8 +15,8 @@ import com.how2examples.ai.util.math.VectorFunctions;
 /**
  * Builds a collection of {@link KMeansCluster} objects based on a {@link DataSet}.
  * <p>
- * The data-set will be partitioned into a predefined numbered of discrete clusters. Each row of the data-set will be associated
- * with one, and only one, cluster.
+ * The data-set will be partitioned into a predefined numbered of discrete clusters. Each row of the data-set will be
+ * associated with one, and only one, cluster.
  */
 public class KMeansClusterer {
    /**
@@ -86,13 +86,9 @@ public class KMeansClusterer {
    }
 
    public ImmutableArray<KMeansCluster> cluster(final DataSet dataSet, final ImmutableArray<KMeansCluster> inputClusters) throws Exception {
-      final KMeansCluster[] outputClusters = toArray(inputClusters);
+      final KMeansCluster[] outputClusters = inputClusters.toArray();
       performIterations(dataSet, outputClusters);
       return new ImmutableArray<KMeansCluster>(outputClusters);
-   }
-
-   private KMeansCluster[] toArray(final ImmutableArray<KMeansCluster> inputClusters) {
-      return inputClusters.asList().toArray(new KMeansCluster[inputClusters.size()]);
    }
 
    private void performIterations(final DataSet dataSet, final KMeansCluster[] clusters) {

@@ -23,21 +23,11 @@ public class ImmutableArrayTest extends TestCase {
       assertEquals("[first, second, third]", TEST_OBJECT.toString());
    }
 
-   public void testAsListMatchesOriginal() {
-      final List<String> list = TEST_OBJECT.asList();
-      assertEquals(TEST_OBJECT.size(), list.size());
+   public void testToArrayMatchesOriginal() {
+      final String[] list = TEST_OBJECT.toArray();
+      assertEquals(TEST_OBJECT.size(), list.length);
       for (int i = 0; i < TEST_OBJECT.size(); i++) {
-         assertSame(TEST_OBJECT.get(i), list.get(i));
-      }
-   }
-
-   public void testAsListUnmodifiable() {
-      final List<String> list = TEST_OBJECT.asList();
-      try {
-         list.add("test");
-         fail();
-      } catch (UnsupportedOperationException e) {
-         // expected
+         assertSame(TEST_OBJECT.get(i), list[i]);
       }
    }
 

@@ -3,7 +3,6 @@ package com.how2examples.ai.util;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -38,8 +37,14 @@ public class ImmutableArray<E> implements Iterable<E> {
       return elements.size();
    }
 
-   public List<E> asList() {
-      return Collections.unmodifiableList(elements);
+   /**
+    * Returns a new array containing all the elements of this instance.
+    * <p>
+    * The caller is free to modify the returned array.
+    */
+   @SuppressWarnings("unchecked")
+   public E[] toArray() {
+      return (E[]) elements.toArray();
    }
 
    @Override
