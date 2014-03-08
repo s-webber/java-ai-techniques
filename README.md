@@ -1,6 +1,8 @@
 java-ai-techniques
 ==================
 
+[![Build Status](https://travis-ci.org/webber-s/java-ai-techniques.png?branch=master)](https://travis-ci.org/webber-s/java-ai-techniques)
+
 ## About
 
 This project contains basic examples of common artificial intelligence (AI) algorithms and data structures.
