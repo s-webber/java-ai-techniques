@@ -54,26 +54,6 @@ public class ImmutableArray<E> implements Iterable<E> {
 
    @Override
    public Iterator<E> iterator() {
-      return new ImmutableIterator();
-   }
-
-   // TODO: "ctr" not synchronised
-   private class ImmutableIterator implements Iterator<E> {
-      private int ctr = 0;
-
-      @Override
-      public boolean hasNext() {
-         return ctr < elements.size();
-      }
-
-      @Override
-      public E next() {
-         return elements.get(ctr++);
-      }
-
-      @Override
-      public void remove() {
-         throw new UnsupportedOperationException();
-      }
+      return new UnmodifiableIterator<>(elements);
    }
 }

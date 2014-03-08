@@ -1,7 +1,6 @@
 package com.how2examples.ai.util;
 
 import java.util.Iterator;
-import java.util.List;
 
 import junit.framework.TestCase;
 
@@ -42,14 +41,8 @@ public class ImmutableArrayTest extends TestCase {
       assertFalse(itr.hasNext());
    }
 
-   public void testIteratorThrowsUnsupportedOperationException() {
-      final Iterator<String> itr = TEST_OBJECT.iterator();
-      try {
-         itr.remove();
-         fail();
-      } catch (UnsupportedOperationException e) {
-         // expected
-      }
+   public void testUnmodifiableIterator() {
+      assertSame(UnmodifiableIterator.class, TEST_OBJECT.iterator().getClass());
    }
 
    public void testGet() {
