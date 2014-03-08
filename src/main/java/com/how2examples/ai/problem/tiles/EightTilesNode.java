@@ -134,7 +134,7 @@ class EightTilesNode implements HeuristicSearchNode {
    }
 
    private EnumMap<Tile, Square> createNewState(Square possibleMove) {
-      EnumMap<Tile, Square> copy = createCopyOfState();
+      EnumMap<Tile, Square> copy = getCopyOfState();
       copy.put(BLANK, possibleMove);
       copy.put(getTile(possibleMove), getBlankPosition());
       return copy;
@@ -183,7 +183,8 @@ class EightTilesNode implements HeuristicSearchNode {
       return 1;
    }
 
-   EnumMap<Tile, Square> createCopyOfState() {
+   /** Returns a copy of the state represented by this node */
+   EnumMap<Tile, Square> getCopyOfState() {
       return state.clone();
    }
 }

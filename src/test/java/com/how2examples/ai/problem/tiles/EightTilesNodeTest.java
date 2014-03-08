@@ -140,7 +140,7 @@ public class EightTilesNodeTest extends TestCase {
       assertEquals(expectedMoves.length, children.length);
       for (int i = 0; i < expectedMoves.length; i++) {
          EnumMap<Tile, Square> expected = arrayToMap(expectedMoves[i]);
-         EnumMap<Tile, Square> actual = children[i].createCopyOfState();
+         EnumMap<Tile, Square> actual = children[i].getCopyOfState();
          assertEquals(expected, actual);
       }
    }

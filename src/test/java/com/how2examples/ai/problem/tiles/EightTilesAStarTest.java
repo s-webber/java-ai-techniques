@@ -199,7 +199,7 @@ public class EightTilesAStarTest extends TestCase {
       EightTilesNode parent = result;
       List<EnumMap<Tile, Square>> states = new LinkedList<>();
       do {
-         states.add(0, parent.createCopyOfState());
+         states.add(0, parent.getCopyOfState());
       } while ((parent = parent.getParent()) != null);
       return states;
    }
