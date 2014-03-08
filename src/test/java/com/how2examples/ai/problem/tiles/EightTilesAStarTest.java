@@ -186,18 +186,18 @@ public class EightTilesAStarTest extends TestCase {
       assertNotNull(result);
       assertTrue(result.isGoal());
 
-      final List<EnumMap<Tile, Square>> states = getSequence(result);
+      final List<EnumMap<Tile, GridPosition>> states = getSequence(result);
 
       assertEquals(expectedSequence.length, states.size());
       for (int i = 0; i < expectedSequence.length; i++) {
-         EnumMap<Tile, Square> expected = arrayToMap(expectedSequence[i]);
+         EnumMap<Tile, GridPosition> expected = arrayToMap(expectedSequence[i]);
          assertEquals(expected, states.get(i));
       }
    }
 
-   private List<EnumMap<Tile, Square>> getSequence(final EightTilesNode result) {
+   private List<EnumMap<Tile, GridPosition>> getSequence(final EightTilesNode result) {
       EightTilesNode parent = result;
-      List<EnumMap<Tile, Square>> states = new LinkedList<>();
+      List<EnumMap<Tile, GridPosition>> states = new LinkedList<>();
       do {
          states.add(0, parent.getCopyOfState());
       } while ((parent = parent.getParent()) != null);

@@ -15,7 +15,7 @@ import java.util.EnumMap;
 import junit.framework.TestCase;
 
 public class EightTilesNodeTest extends TestCase {
-   private static final int NUM_SQUARES = 9;
+   private static final int NUM_GRID_POSITIONS = GridPosition.values().length;
    private static final Tile _ = BLANK;
 
    public void testTopLeft() {
@@ -139,16 +139,16 @@ public class EightTilesNodeTest extends TestCase {
       EightTilesNode[] children = n.getChildren();
       assertEquals(expectedMoves.length, children.length);
       for (int i = 0; i < expectedMoves.length; i++) {
-         EnumMap<Tile, Square> expected = arrayToMap(expectedMoves[i]);
-         EnumMap<Tile, Square> actual = children[i].getCopyOfState();
+         EnumMap<Tile, GridPosition> expected = arrayToMap(expectedMoves[i]);
+         EnumMap<Tile, GridPosition> actual = children[i].getCopyOfState();
          assertEquals(expected, actual);
       }
    }
 
-   static EnumMap<Tile, Square> arrayToMap(Tile[] state) {
-      EnumMap<Tile, Square> result = new EnumMap<Tile, Square>(Tile.class);
-      for (int i = 0; i < NUM_SQUARES; i++) {
-         result.put(state[i], Square.values()[i]);
+   static EnumMap<Tile, GridPosition> arrayToMap(Tile[] state) {
+      EnumMap<Tile, GridPosition> result = new EnumMap<Tile, GridPosition>(Tile.class);
+      for (int i = 0; i < NUM_GRID_POSITIONS; i++) {
+         result.put(state[i], GridPosition.values()[i]);
       }
       return result;
    }

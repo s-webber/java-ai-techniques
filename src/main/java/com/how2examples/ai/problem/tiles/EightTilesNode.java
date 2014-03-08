@@ -1,14 +1,14 @@
 package com.how2examples.ai.problem.tiles;
 
-import static com.how2examples.ai.problem.tiles.Square.BOTTOM_CENTRE;
-import static com.how2examples.ai.problem.tiles.Square.BOTTOM_LEFT;
-import static com.how2examples.ai.problem.tiles.Square.BOTTOM_RIGHT;
-import static com.how2examples.ai.problem.tiles.Square.CENTRE;
-import static com.how2examples.ai.problem.tiles.Square.MIDDLE_LEFT;
-import static com.how2examples.ai.problem.tiles.Square.MIDDLE_RIGHT;
-import static com.how2examples.ai.problem.tiles.Square.TOP_CENTRE;
-import static com.how2examples.ai.problem.tiles.Square.TOP_LEFT;
-import static com.how2examples.ai.problem.tiles.Square.TOP_RIGHT;
+import static com.how2examples.ai.problem.tiles.GridPosition.BOTTOM_CENTRE;
+import static com.how2examples.ai.problem.tiles.GridPosition.BOTTOM_LEFT;
+import static com.how2examples.ai.problem.tiles.GridPosition.BOTTOM_RIGHT;
+import static com.how2examples.ai.problem.tiles.GridPosition.CENTRE;
+import static com.how2examples.ai.problem.tiles.GridPosition.MIDDLE_LEFT;
+import static com.how2examples.ai.problem.tiles.GridPosition.MIDDLE_RIGHT;
+import static com.how2examples.ai.problem.tiles.GridPosition.TOP_CENTRE;
+import static com.how2examples.ai.problem.tiles.GridPosition.TOP_LEFT;
+import static com.how2examples.ai.problem.tiles.GridPosition.TOP_RIGHT;
 import static com.how2examples.ai.problem.tiles.Tile.BLANK;
 import static java.util.EnumSet.of;
 
@@ -35,16 +35,16 @@ import com.how2examples.ai.search.HeuristicSearchNode;
  * <img src="../../search/doc-files/TreeSearch.png">
  */
 class EightTilesNode implements HeuristicSearchNode {
-   private static final EnumMap<Tile, Square> GOAL = new EnumMap<Tile, Square>(Tile.class);
+   private static final EnumMap<Tile, GridPosition> GOAL = new EnumMap<Tile, GridPosition>(Tile.class);
    static {
       final Tile[] tiles = Tile.values();
-      final Square[] squares = Square.values();
+      final GridPosition[] positions = GridPosition.values();
       for (int i = 0; i < tiles.length; i++) {
-         GOAL.put(tiles[i], squares[i]);
+         GOAL.put(tiles[i], positions[i]);
       }
    }
 
-   private static final EnumMap<Square, EnumSet<Square>> MOVES = new EnumMap<>(Square.class);
+   private static final EnumMap<GridPosition, EnumSet<GridPosition>> MOVES = new EnumMap<>(GridPosition.class);
    static {
       MOVES.put(TOP_LEFT, of(TOP_CENTRE, MIDDLE_LEFT));
       MOVES.put(TOP_CENTRE, of(TOP_LEFT, TOP_RIGHT, CENTRE));
@@ -58,42 +58,42 @@ class EightTilesNode implements HeuristicSearchNode {
    }
 
    /**
-    * The Manhattan distance from every square to every other square.
+    * The Manhattan distance from every grid position to every other grid position.
     * <p>
     * Used to estimate cost to goal, as used by heuristic function.
     */
-   private static final EnumMap<Square, EnumMap<Square, Integer>> DISTANCES = new EnumMap<>(Square.class);
+   private static final EnumMap<GridPosition, EnumMap<GridPosition, Integer>> DISTANCES = new EnumMap<>(GridPosition.class);
    static {
-      // For every square work out the distance to every other square.
+      // For every position work out the distance to every other position.
       // Note: not very efficient as works out each distance twice 
       // (e.g. both TOP_LEFT to BOTTOM_RIGHT and BOTTOM_RIGHT to TOP_LEFT - even though the result for both is the same)
-      for (Square from : Square.values()) {
-         EnumMap<Square, Integer> m = new EnumMap<>(Square.class);
+      for (GridPosition from : GridPosition.values()) {
+         EnumMap<GridPosition, Integer> m = new EnumMap<>(GridPosition.class);
          DISTANCES.put(from, m);
-         for (Square to : Square.values()) {
+         for (GridPosition to : GridPosition.values()) {
             m.put(to, calculateDistance(from, to));
          }
       }
    }
 
    /**
-    * Returns the distance between the two specified squares.
+    * Returns the distance between the two specified positions.
     * <p>
     * Distance is calculated as the sum of horizontal and vertical distances (as tiles cannot be moved diagonally).
     */
-   private static int calculateDistance(Square from, Square to) {
+   private static int calculateDistance(GridPosition from, GridPosition to) {
       return Math.abs(from.x - to.x) + Math.abs(from.y - to.y);
    }
 
    private final EightTilesNode parent;
-   private final EnumMap<Tile, Square> state;
+   private final EnumMap<Tile, GridPosition> state;
    private final int cost;
 
-   EightTilesNode(EnumMap<Tile, Square> startState) {
+   EightTilesNode(EnumMap<Tile, GridPosition> startState) {
       this(null, startState);
    }
 
-   private EightTilesNode(EightTilesNode parent, EnumMap<Tile, Square> state) {
+   private EightTilesNode(EightTilesNode parent, EnumMap<Tile, GridPosition> state) {
       this.parent = parent;
       this.state = state;
       this.cost = calculateCost();
@@ -101,11 +101,11 @@ class EightTilesNode implements HeuristicSearchNode {
 
    private int calculateCost() {
       int cost = 0;
-      for (Entry<Tile, Square> e : state.entrySet()) {
+      for (Entry<Tile, GridPosition> e : state.entrySet()) {
          Tile t = e.getKey();
          if (t != BLANK) {
-            Square actual = e.getValue();
-            Square target = GOAL.get(t);
+            GridPosition actual = e.getValue();
+            GridPosition target = GOAL.get(t);
             cost += DISTANCES.get(actual).get(target);
          }
       }
@@ -114,11 +114,11 @@ class EightTilesNode implements HeuristicSearchNode {
 
    @Override
    public EightTilesNode[] getChildren() {
-      EnumSet<Square> possibleMoves = getPossibleMoves();
+      EnumSet<GridPosition> possibleMoves = getPossibleMoves();
 
       List<EightTilesNode> children = new ArrayList<>();
-      for (Square possibleMove : possibleMoves) {
-         EnumMap<Tile, Square> copy = createNewState(possibleMove);
+      for (GridPosition possibleMove : possibleMoves) {
+         EnumMap<Tile, GridPosition> copy = createNewState(possibleMove);
          if (isNewState(copy)) {
             children.add(new EightTilesNode(this, copy));
          }
@@ -127,33 +127,33 @@ class EightTilesNode implements HeuristicSearchNode {
       return children.toArray(new EightTilesNode[children.size()]);
    }
 
-   private EnumSet<Square> getPossibleMoves() {
-      Square blankPosition = getBlankPosition();
-      EnumSet<Square> possibleMoves = MOVES.get(blankPosition);
+   private EnumSet<GridPosition> getPossibleMoves() {
+      GridPosition blankPosition = getBlankPosition();
+      EnumSet<GridPosition> possibleMoves = MOVES.get(blankPosition);
       return possibleMoves;
    }
 
-   private EnumMap<Tile, Square> createNewState(Square possibleMove) {
-      EnumMap<Tile, Square> copy = getCopyOfState();
+   private EnumMap<Tile, GridPosition> createNewState(GridPosition possibleMove) {
+      EnumMap<Tile, GridPosition> copy = getCopyOfState();
       copy.put(BLANK, possibleMove);
       copy.put(getTile(possibleMove), getBlankPosition());
       return copy;
    }
 
-   private Square getBlankPosition() {
+   private GridPosition getBlankPosition() {
       return state.get(BLANK);
    }
 
-   private Tile getTile(Square square) {
-      for (Entry<Tile, Square> e : state.entrySet()) {
-         if (e.getValue() == square) {
+   private Tile getTile(GridPosition position) {
+      for (Entry<Tile, GridPosition> e : state.entrySet()) {
+         if (e.getValue() == position) {
             return e.getKey();
          }
       }
       throw new IllegalArgumentException();
    }
 
-   private boolean isNewState(EnumMap<Tile, Square> nextState) {
+   private boolean isNewState(EnumMap<Tile, GridPosition> nextState) {
       EightTilesNode p = this;
       while ((p = p.parent) != null) {
          if (nextState.equals(p.state)) {
@@ -184,7 +184,7 @@ class EightTilesNode implements HeuristicSearchNode {
    }
 
    /** Returns a copy of the state represented by this node */
-   EnumMap<Tile, Square> getCopyOfState() {
+   EnumMap<Tile, GridPosition> getCopyOfState() {
       return state.clone();
    }
 }
