@@ -7,6 +7,8 @@ import java.util.Queue;
 
 /**
  * Creates new {@link Generation} instances.
+ * <p>
+ * <img src="doc-files/GeneticAlgorithm.png">
  */
 public class GenerationFactory<T> {
    private final GeneticAlgorithmConfiguration config;

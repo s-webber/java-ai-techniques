@@ -31,7 +31,7 @@ import com.how2examples.ai.search.HeuristicSearchNode;
  * GH
  * </pre>
  * </p>
- * <img src="../../search/doc-files/TreeSearch.png">
+ * See: <a href="http://en.wikipedia.org/wiki/Sliding_puzzle">Wikipedia</a>
  */
 class EightTilesNode implements HeuristicSearchNode {
    private static final EnumMap<Tile, GridPosition> GOAL = new EnumMap<Tile, GridPosition>(Tile.class);

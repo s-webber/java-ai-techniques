@@ -1,8 +1,14 @@
 package com.how2examples.ai.minimax;
 
-
-/** A node (state) in a minimax search tree. */
+/**
+ * A node (state) in a minimax search tree.
+ * <p>
+ * <img src="doc-files/MiniMax.png">
+ */
 public interface MiniMaxNode {
+   /**
+    * Returns possible next moves from the game-state represented by this node.
+    */
    MiniMaxNode[] getChildren();
 
    /**

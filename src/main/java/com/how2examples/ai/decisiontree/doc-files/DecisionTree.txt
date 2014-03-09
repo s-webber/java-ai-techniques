@@ -16,7 +16,7 @@ DecisionTreeNode <|-- ChoiceNode
 ChoiceNode o-- DecisionTreeNode
 
 interface DecisionTreeStrategy
-class ID3Strategy
-DecisionTreeStrategy <|-- ID3Strategy
+class InformationGainStrategy
+DecisionTreeStrategy <|-- InformationGainStrategy
 
 @enduml

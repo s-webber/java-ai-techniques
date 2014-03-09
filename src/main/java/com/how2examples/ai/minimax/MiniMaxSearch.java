@@ -13,7 +13,7 @@ public class MiniMaxSearch {
    private static int WORST_POSSIBLE_OUTCOME = Integer.MIN_VALUE;
 
    /**
-    * Convenient alternative to: {@link MiniMaxSearch#minimax(currentGameState, playerToMoveNext, Integer.MAX_VALUE)}
+    * Convenient alternative to: {@link MiniMaxSearch#minimax(MiniMaxNode, MiniMaxPlayer, int)}
     */
    public static MiniMaxNode minimax(final MiniMaxNode currentGameState, final MiniMaxPlayer playerToMoveNext) {
       return minimax(currentGameState, playerToMoveNext, Integer.MAX_VALUE);

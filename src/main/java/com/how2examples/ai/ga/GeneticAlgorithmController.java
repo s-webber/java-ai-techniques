@@ -2,6 +2,8 @@ package com.how2examples.ai.ga;
 
 /**
  * Uses an iterative process to select the best solution.
+ * <p>
+ * <img src="doc-files/GeneticAlgorithm.png">
  */
 public class GeneticAlgorithmController {
    public static <T> T process(GenerationFactory<T> generationFactory, int maxNumberOfGenerations) {

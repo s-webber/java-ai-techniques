@@ -10,6 +10,7 @@ import java.util.Map;
 
 import com.how2examples.ai.minimax.MiniMaxPlayer;
 
+/** Provides methods for creating {@link NoughtsAndCrossesNode} instances. */
 class NoughtsAndCrossesNodeFactory {
    private static final int NUMBER_OF_SQUARES = Square.values().length;
 

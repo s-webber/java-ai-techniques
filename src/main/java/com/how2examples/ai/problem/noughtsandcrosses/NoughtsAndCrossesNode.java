@@ -24,9 +24,7 @@ import com.how2examples.ai.minimax.MiniMaxPlayer;
  * marks squares with a 'X' and the other marks squares with a 'O'. The player who succeeds in placing three respective
  * marks in a line (horizontal, vertical, or diagonal) wins the game.
  * </p>
- * <img src="../../search/doc-files/Minimax.png">
- * 
- * @see http://en.wikipedia.org/wiki/Tic_tac_toe
+ * See: <a href="http://en.wikipedia.org/wiki/Tic_tac_toe">Wikipedia</a>
  */
 class NoughtsAndCrossesNode implements MiniMaxNode {
    private static final NoughtsAndCrossesNode[] EMPTY_ARRAY = new NoughtsAndCrossesNode[0];

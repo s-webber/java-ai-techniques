@@ -1,5 +1,6 @@
 package com.how2examples.ai.problem.noughtsandcrosses;
 
+/** Represents a square in a 3x3 grid. */
 enum Square {
    TOP_LEFT,
    TOP_CENTRE,

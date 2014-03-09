@@ -16,9 +16,10 @@ import com.how2examples.ai.util.data.DataSetRow;
  * <p>
  * Implementation of the ID3 (Iterative Dichotomiser 3) decision tree learning algorithm.
  * </p>
+ * <p>
  * <img src="doc-files/DecisionTree.png">
- * 
- * @see http://en.wikipedia.org/wiki/ID3_algorithm
+ * </p>
+ * See: <a href="http://en.wikipedia.org/wiki/ID3_algorithm">Wikipedia</a>
  */
 public class DecisionTreeGenerator {
    private final DecisionTreeStrategy strategy;

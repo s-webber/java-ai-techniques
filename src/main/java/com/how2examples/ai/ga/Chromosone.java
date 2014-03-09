@@ -19,7 +19,7 @@ public class Chromosone<T extends Object> {
    }
 
    /**
-    * The fitness (i.e. quality) of this solution.
+    * The fitness (quality) of this solution.
     * 
     * @return the fitness of this solution (the higher the value the better the solution)
     */

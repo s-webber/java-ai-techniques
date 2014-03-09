@@ -12,9 +12,7 @@ import com.how2examples.ai.search.BlindSearchNode;
  * The n-queens problem requires placing <i>n</i> queens on an <i>n</i>x<i>n</i> chess board. A solution requires that
  * no two queens share the same row, column, or diagonal.
  * </p>
- * <img src="../../search/doc-files/TreeSearch.png">
- * 
- * @see http://en.wikipedia.org/wiki/Eight_queens
+ * See: <a href="http://en.wikipedia.org/wiki/Eight_queens">Wikipedia</a>
  */
 class QueensNode implements BlindSearchNode {
    private final QueensConfiguration configuration;

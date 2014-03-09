@@ -1,0 +1,40 @@
+@startuml GeneticAlgorithm.png
+hide members
+
+class GeneticAlgorithmController
+
+class GenerationFactory
+
+class Generation
+
+interface ChromosoneFactory {
++create()
++mutate(T)
++crossover(T,T)
+}
+
+interface SelectionStrategy
+
+interface Chromosone
+
+class GeneticAlgorithmConfiguration
+
+GeneticAlgorithmController ..> GenerationFactory
+
+GenerationFactory .> Generation : creates
+
+ChromosoneFactory .> Chromosone : creates
+
+Generation ..> Chromosone : contains
+
+GenerationFactory o-- ChromosoneFactory
+SelectionStrategy -o GenerationFactory 
+GenerationFactory o-- GeneticAlgorithmConfiguration
+
+namespace com.how2examples.ai.problem.tsp {
+.ChromosoneFactory <|-- TravellingSalesPersonChromosoneFactory
+}
+
+show ChromosoneFactory method
+
+@enduml

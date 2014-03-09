@@ -15,6 +15,11 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
+/**
+ * Contains configuration of all possible winning lines.
+ * <p>
+ * i.e. all sets of 3 squares that form a horizontal, vertical, or diagonal line.
+ */
 class Lines {
    private static final List<EnumSet<Square>> LINES = new ArrayList<>();
    static {
@@ -33,6 +38,11 @@ class Lines {
       LINES.add(of(TOP_RIGHT, CENTRE, BOTTOM_LEFT));
    }
 
+   /**
+    * Returns true if the specified set contains a winning line.
+    * <p>
+    * i.e. if the set contains three {@link Square} instances that form a horizontal, vertical, or diagonal line.
+    */
    static boolean hasLine(EnumSet<Square> squaresPopulatedBySymbol) {
       for (EnumSet<Square> line : LINES) {
          if (squaresPopulatedBySymbol.containsAll(line)) {

@@ -68,6 +68,7 @@ public class Generation<T> implements Iterable<Chromosone<T>> {
       return get(0);
    }
 
+   /** Returns the number of elements in this generation. */
    public int size() {
       return orderedChromosones.size();
    }
