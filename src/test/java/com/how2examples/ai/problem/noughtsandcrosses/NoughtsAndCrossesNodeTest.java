@@ -66,10 +66,10 @@ public class NoughtsAndCrossesNodeTest extends TestCase {
    }
 
    public void testCopyOfState() {
-      // test createCopyOfState() returns a copy (not the same version)
+      // test getCopyOfState() returns a copy (not the same version)
       NoughtsAndCrossesNode n = createNoughtsAndCrossesNode("x-o" + "-o-" + "--x");
-      assertNotSame(n.createCopyOfState(), n.createCopyOfState());
-      assertEquals(n.createCopyOfState(), n.createCopyOfState());
+      assertNotSame(n.getCopyOfState(), n.getCopyOfState());
+      assertEquals(n.getCopyOfState(), n.getCopyOfState());
    }
 
    private void assertChildren(String board, Square... expectedMoves) {
@@ -90,8 +90,8 @@ public class NoughtsAndCrossesNodeTest extends TestCase {
    }
 
    private void assertNodesEqual(NoughtsAndCrossesNode n1, NoughtsAndCrossesNode n2) {
-      Map<MiniMaxPlayer, EnumSet<Square>> map1 = n1.createCopyOfState();
-      Map<MiniMaxPlayer, EnumSet<Square>> map2 = n2.createCopyOfState();
+      Map<MiniMaxPlayer, EnumSet<Square>> map1 = n1.getCopyOfState();
+      Map<MiniMaxPlayer, EnumSet<Square>> map2 = n2.getCopyOfState();
       for (MiniMaxPlayer p : MiniMaxPlayer.values()) {
          EnumSet<Square> set1 = map1.get(p);
          EnumSet<Square> set2 = map2.get(p);
@@ -101,7 +101,7 @@ public class NoughtsAndCrossesNodeTest extends TestCase {
    }
 
    private NoughtsAndCrossesNode createNode(NoughtsAndCrossesNode n, Square s) {
-      final Map<MiniMaxPlayer, EnumSet<Square>> state = n.createCopyOfState();
+      final Map<MiniMaxPlayer, EnumSet<Square>> state = n.getCopyOfState();
       state.get(n.getPlayerToMoveNext()).add(s);
       return new NoughtsAndCrossesNode(state);
    }

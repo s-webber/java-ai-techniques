@@ -124,8 +124,8 @@ public class NoughtsAndCrossesMiniMaxTest extends TestCase {
 
    private Square getNextMove(NoughtsAndCrossesNode originalState, NoughtsAndCrossesNode newState) {
       MiniMaxPlayer playerToMoveNext = originalState.getPlayerToMoveNext();
-      EnumSet<Square> originalSymbolSquares = originalState.createCopyOfState().get(playerToMoveNext);
-      EnumSet<Square> newSymbolSquares = newState.createCopyOfState().get(playerToMoveNext);
+      EnumSet<Square> originalSymbolSquares = originalState.getCopyOfState().get(playerToMoveNext);
+      EnumSet<Square> newSymbolSquares = newState.getCopyOfState().get(playerToMoveNext);
       return getNextMove(newSymbolSquares, originalSymbolSquares);
    }
 

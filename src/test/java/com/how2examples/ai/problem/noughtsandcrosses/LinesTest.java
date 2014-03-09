@@ -66,7 +66,7 @@ public class LinesTest extends TestCase {
 
    private void assertLine(String board, boolean expectation) {
       NoughtsAndCrossesNode n = createNoughtsAndCrossesNode(board);
-      EnumSet<Square> squaresPopulatedBySymbol = n.createCopyOfState().get(PLAYER_1);
+      EnumSet<Square> squaresPopulatedBySymbol = n.getCopyOfState().get(PLAYER_1);
       assertEquals(expectation, Lines.hasLine(squaresPopulatedBySymbol));
    }
 }

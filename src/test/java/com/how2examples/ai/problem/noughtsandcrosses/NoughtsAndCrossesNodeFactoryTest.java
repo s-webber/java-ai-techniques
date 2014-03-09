@@ -127,7 +127,7 @@ public class NoughtsAndCrossesNodeFactoryTest extends TestCase {
    }
 
    private void assertNodeState(NoughtsAndCrossesNode n, EnumSet<Square> noughts, EnumSet<Square> crosses) {
-      Map<MiniMaxPlayer, EnumSet<Square>> m = n.createCopyOfState();
+      Map<MiniMaxPlayer, EnumSet<Square>> m = n.getCopyOfState();
       assertEquals(noughts, m.get(PLAYER_1));
       assertEquals(crosses, m.get(PLAYER_2));
    }

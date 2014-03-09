@@ -34,7 +34,7 @@ class NoughtsAndCrossesNode implements MiniMaxNode {
    private final Map<MiniMaxPlayer, EnumSet<Square>> state;
 
    NoughtsAndCrossesNode(Map<MiniMaxPlayer, EnumSet<Square>> state) {
-      this.state = createCopyOfState(state);
+      this.state = getCopyOfState(state);
    }
 
    MiniMaxPlayer getPlayerToMoveNext() {
@@ -85,7 +85,7 @@ class NoughtsAndCrossesNode implements MiniMaxNode {
    }
 
    private NoughtsAndCrossesNode createChild(Square squareToPopulateNext) {
-      Map<MiniMaxPlayer, EnumSet<Square>> newState = createCopyOfState();
+      Map<MiniMaxPlayer, EnumSet<Square>> newState = getCopyOfState();
       newState.get(getPlayerToMoveNext()).add(squareToPopulateNext);
 
       return new NoughtsAndCrossesNode(newState);
@@ -141,11 +141,12 @@ class NoughtsAndCrossesNode implements MiniMaxNode {
       return hasLine(state.get(Player));
    }
 
-   Map<MiniMaxPlayer, EnumSet<Square>> createCopyOfState() {
-      return createCopyOfState(state);
+   /** Returns a copy of the state represented by this node */
+   Map<MiniMaxPlayer, EnumSet<Square>> getCopyOfState() {
+      return getCopyOfState(state);
    }
 
-   private static Map<MiniMaxPlayer, EnumSet<Square>> createCopyOfState(Map<MiniMaxPlayer, EnumSet<Square>> currentState) {
+   private static Map<MiniMaxPlayer, EnumSet<Square>> getCopyOfState(Map<MiniMaxPlayer, EnumSet<Square>> currentState) {
       final Map<MiniMaxPlayer, EnumSet<Square>> newState = new EnumMap<>(MiniMaxPlayer.class);
       for (Entry<MiniMaxPlayer, EnumSet<Square>> e : currentState.entrySet()) {
          newState.put(e.getKey(), copyOf(e.getValue()));
