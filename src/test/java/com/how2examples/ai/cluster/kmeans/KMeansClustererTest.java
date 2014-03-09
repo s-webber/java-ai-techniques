@@ -87,5 +87,10 @@ public class KMeansClustererTest extends TestCase {
       public double getDouble(double minInclusive, double maxInclusive) {
          return RESULTS[ctr++];
       }
+
+      @Override
+      public double nextDouble() {
+         throw new UnsupportedOperationException();
+      }
    }
 }

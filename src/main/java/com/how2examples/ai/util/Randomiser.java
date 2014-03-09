@@ -16,4 +16,9 @@ public interface Randomiser {
     * @return a number between the specified range (inclusive).
     */
    double getDouble(double minInclusive, double maxInclusive);
+
+   /**
+    * Returns a value between {@code 0.0d} (inclusive) to {@code 1.0d} (exclusive).
+    */
+   double nextDouble();
 }
