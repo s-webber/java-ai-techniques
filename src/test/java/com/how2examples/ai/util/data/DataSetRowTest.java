@@ -15,6 +15,7 @@ public class DataSetRowTest extends TestCase {
 
       assertEquals(outcome, r.getOutcome());
       assertEquals(outcome, r.getValue(values.length - 1));
+      assertEquals(Integer.parseInt(outcome), r.getOutcomeAsInt());
       assertEquals(Double.parseDouble(outcome), r.getOutcomeAsDouble());
       assertEquals(numberOfInputs, r.getNumberOfInputs());
       for (int i = 0; i < numberOfInputs; i++) {

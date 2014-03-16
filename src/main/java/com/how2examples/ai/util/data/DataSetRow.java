@@ -24,6 +24,10 @@ public class DataSetRow {
       return Double.parseDouble(getOutcome());
    }
 
+   public int getOutcomeAsInt() {
+      return Integer.parseInt(getOutcome());
+   }
+
    public double[] getInputsAsDoubleArray() {
       // length-1 to skip last column which is the result/outcome 
       double[] v = new double[values.length - 1];
