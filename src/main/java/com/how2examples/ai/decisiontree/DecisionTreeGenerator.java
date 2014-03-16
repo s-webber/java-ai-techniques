@@ -1,5 +1,7 @@
 package com.how2examples.ai.decisiontree;
 
+import static com.how2examples.ai.util.ImmutableListFactory.createList;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,7 +9,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
-import com.how2examples.ai.util.ImmutableArray;
+import com.google.common.collect.ImmutableList;
 import com.how2examples.ai.util.data.DataSet;
 import com.how2examples.ai.util.data.DataSetRow;
 
@@ -29,7 +31,7 @@ public class DecisionTreeGenerator {
    }
 
    public DecisionTreeNode generateTree(final DataSet dataSet) {
-      final ImmutableArray<DataSetRow> values = dataSet.getValues();
+      final ImmutableList<DataSetRow> values = dataSet.getValues();
       if (isOnlyOneOutcome(values)) {
          return new OutcomeNode(values.get(0).getOutcome());
       } else {
@@ -39,7 +41,7 @@ public class DecisionTreeGenerator {
    }
 
    private DecisionTreeNode recursiveGenerateTree(final DataSet dataSet, final boolean[] alreadyFilteredKeys) {
-      final ImmutableArray<String> keys = dataSet.getKeys();
+      final ImmutableList<String> keys = dataSet.getKeys();
       final Map<String, DecisionTreeNode> children = new TreeMap<>();
       final int columnToSplitOn = getBestColumnIndexToSplitOn(dataSet, alreadyFilteredKeys);
       final Map<String, List<DataSetRow>> subsets = getSubsets(dataSet.getValues(), columnToSplitOn);
@@ -47,7 +49,7 @@ public class DecisionTreeGenerator {
       for (final Entry<String, List<DataSetRow>> e : subsets.entrySet()) {
          final String key = e.getKey();
          final DecisionTreeNode child;
-         final ImmutableArray<DataSetRow> values = new ImmutableArray<>(e.getValue());
+         final ImmutableList<DataSetRow> values = createList(e.getValue());
          if (isOnlyOneOutcome(values)) {
             child = new OutcomeNode(e.getValue().get(0).getOutcome());
          } else {
@@ -60,7 +62,7 @@ public class DecisionTreeGenerator {
    }
 
    private int getBestColumnIndexToSplitOn(final DataSet dataSet, final boolean[] alreadyFilteredKeys) {
-      final ImmutableArray<DataSetRow> values = dataSet.getValues();
+      final ImmutableList<DataSetRow> values = dataSet.getValues();
       int bestIndexSoFar = -1;
       double bestGainSoFar = -Double.MAX_VALUE;
       for (int i = 0; i < alreadyFilteredKeys.length; i++) {
@@ -79,7 +81,7 @@ public class DecisionTreeGenerator {
       return bestIndexSoFar;
    }
 
-   private static Map<String, List<DataSetRow>> getSubsets(final ImmutableArray<DataSetRow> data, final int columnIndex) {
+   private static Map<String, List<DataSetRow>> getSubsets(final ImmutableList<DataSetRow> data, final int columnIndex) {
       final Map<String, List<DataSetRow>> result = new HashMap<>();
       for (final DataSetRow line : data) {
          final String value = line.getValue(columnIndex);
@@ -102,7 +104,7 @@ public class DecisionTreeGenerator {
       return newState;
    }
 
-   private boolean isOnlyOneOutcome(final ImmutableArray<DataSetRow> lines) {
+   private boolean isOnlyOneOutcome(final ImmutableList<DataSetRow> lines) {
       final String value = lines.get(0).getOutcome();
       for (int i = 1; i < lines.size(); i++) {
          if (!value.equals(lines.get(i).getOutcome())) {

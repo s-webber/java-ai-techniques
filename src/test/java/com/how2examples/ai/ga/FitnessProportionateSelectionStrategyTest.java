@@ -6,7 +6,7 @@ import java.util.Queue;
 
 import junit.framework.TestCase;
 
-import com.how2examples.ai.util.ImmutableArray;
+import com.google.common.collect.ImmutableList;
 import com.how2examples.ai.util.Randomiser;
 
 public class FitnessProportionateSelectionStrategyTest extends TestCase {
@@ -72,7 +72,7 @@ public class FitnessProportionateSelectionStrategyTest extends TestCase {
       }
 
       @Override
-      public <T> ImmutableArray<T> shuffle(ImmutableArray<T> locationNames) {
+      public <T> ImmutableList<T> shuffle(ImmutableList<T> locationNames) {
          throw new UnsupportedOperationException();
       }
    }

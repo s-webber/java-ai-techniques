@@ -6,8 +6,6 @@ import java.util.Iterator;
 
 import junit.framework.TestCase;
 
-import com.how2examples.ai.util.UnmodifiableIterator;
-
 public class GenerationTest extends TestCase {
    private final Chromosone<Object> CHROMOSONE_A = new Chromosone<Object>(new Object(), -1);
    private final Chromosone<Object> CHROMOSONE_B = new Chromosone<Object>(new Object(), 100);
@@ -38,10 +36,6 @@ public class GenerationTest extends TestCase {
       assertTrue(itr.hasNext());
       assertSame(CHROMOSONE_A, itr.next());
       assertFalse(itr.hasNext());
-   }
-
-   public void testUnmodifiableIterator() {
-      assertSame(UnmodifiableIterator.class, GENERATION.iterator().getClass());
    }
 
    public void testSize() {

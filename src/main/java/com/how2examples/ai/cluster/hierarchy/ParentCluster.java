@@ -1,6 +1,8 @@
 package com.how2examples.ai.cluster.hierarchy;
 
-import com.how2examples.ai.util.ImmutableArray;
+import static com.how2examples.ai.util.ImmutableListFactory.createList;
+
+import com.google.common.collect.ImmutableList;
 import com.how2examples.ai.util.math.VectorFunctions;
 
 /**
@@ -9,10 +11,10 @@ import com.how2examples.ai.util.math.VectorFunctions;
  * <img src="doc-files/HierarchicalClusterer.png">
  */
 class ParentCluster implements HierarchicalCluster {
-   private final ImmutableArray<HierarchicalCluster> children;
+   private final ImmutableList<HierarchicalCluster> children;
 
    ParentCluster(final HierarchicalCluster child1, final HierarchicalCluster child2) {
-      this.children = new ImmutableArray<>(new HierarchicalCluster[] {child1, child2});
+      this.children = createList(child1, child2);
    }
 
    @Override
@@ -21,7 +23,7 @@ class ParentCluster implements HierarchicalCluster {
    }
 
    @Override
-   public ImmutableArray<HierarchicalCluster> getChildren() {
+   public ImmutableList<HierarchicalCluster> getChildren() {
       return children;
    }
 

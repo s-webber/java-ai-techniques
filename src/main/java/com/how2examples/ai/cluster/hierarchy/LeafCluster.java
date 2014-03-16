@@ -1,6 +1,8 @@
 package com.how2examples.ai.cluster.hierarchy;
 
-import com.how2examples.ai.util.ImmutableArray;
+import static com.how2examples.ai.util.ImmutableListFactory.emptyList;
+
+import com.google.common.collect.ImmutableList;
 import com.how2examples.ai.util.data.DataSetRow;
 
 /**
@@ -20,10 +22,9 @@ class LeafCluster implements HierarchicalCluster {
       return row.getOutcome();
    }
 
-   @SuppressWarnings("unchecked")
    @Override
-   public ImmutableArray<HierarchicalCluster> getChildren() {
-      return ImmutableArray.EMPTY_IMMUTABLE_ARRAY;
+   public ImmutableList<HierarchicalCluster> getChildren() {
+      return emptyList();
    }
 
    @Override

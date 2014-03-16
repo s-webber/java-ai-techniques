@@ -1,12 +1,14 @@
 package com.how2examples.ai.decisiontree;
 
+import static com.how2examples.ai.util.ImmutableListFactory.createList;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.how2examples.ai.util.ImmutableArray;
+import com.google.common.collect.ImmutableList;
 import com.how2examples.ai.util.data.DataSetRow;
 
 /**
@@ -25,19 +27,19 @@ public class InformationGainStrategy implements DecisionTreeStrategy {
     * (information gain = reduction in entropy)
     */
    @Override
-   public double gain(final ImmutableArray<DataSetRow> data, final int columnIndex, final int outcomeColumnIndex) {
+   public double gain(final ImmutableList<DataSetRow> data, final int columnIndex, final int outcomeColumnIndex) {
       double subsetEntropy = 0;
       final Map<String, Integer> frequencies = calculateFrequencies(data, columnIndex);
       for (final Entry<String, Integer> e : frequencies.entrySet()) {
          final int frequency = e.getValue();
          final double valueProbability = (double) frequency / frequencies.size();
-         final ImmutableArray<DataSetRow> subset = getSubset(data, columnIndex, e.getKey());
+         final ImmutableList<DataSetRow> subset = getSubset(data, columnIndex, e.getKey());
          subsetEntropy += valueProbability * entropy(subset, outcomeColumnIndex);
       }
       return entropy(data, outcomeColumnIndex) - subsetEntropy;
    }
 
-   private static double entropy(final ImmutableArray<DataSetRow> data, final int columnIndex) {
+   private static double entropy(final ImmutableList<DataSetRow> data, final int columnIndex) {
       double entropy = 0;
       final Map<String, Integer> frequencies = calculateFrequencies(data, columnIndex);
       for (final int frequency : frequencies.values()) {
@@ -46,7 +48,7 @@ public class InformationGainStrategy implements DecisionTreeStrategy {
       return entropy;
    }
 
-   private static Map<String, Integer> calculateFrequencies(final ImmutableArray<DataSetRow> data, final int columnIndex) {
+   private static Map<String, Integer> calculateFrequencies(final ImmutableList<DataSetRow> data, final int columnIndex) {
       final Map<String, Integer> frequencies = new HashMap<>();
       for (final DataSetRow line : data) {
          final String value = line.getValue(columnIndex);
@@ -65,13 +67,13 @@ public class InformationGainStrategy implements DecisionTreeStrategy {
       return Math.log(number) / Math.log(base);
    }
 
-   private static ImmutableArray<DataSetRow> getSubset(final ImmutableArray<DataSetRow> data, final int columnIndex, final String value) {
+   private static ImmutableList<DataSetRow> getSubset(final ImmutableList<DataSetRow> data, final int columnIndex, final String value) {
       final List<DataSetRow> subset = new ArrayList<>();
       for (final DataSetRow line : data) {
          if (value.equals(line.getValue(columnIndex))) {
             subset.add(line);
          }
       }
-      return new ImmutableArray<DataSetRow>(subset);
+      return createList(subset);
    }
 }

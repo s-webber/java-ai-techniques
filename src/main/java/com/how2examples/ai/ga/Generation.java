@@ -1,5 +1,6 @@
 package com.how2examples.ai.ga;
 
+import static com.how2examples.ai.util.ImmutableListFactory.createList;
 import static java.util.Collections.sort;
 
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-import com.how2examples.ai.util.UnmodifiableIterator;
+import com.google.common.collect.ImmutableList;
 
 /**
  * An ordered collection of {@link Chromosone} instances.
@@ -30,7 +31,7 @@ public class Generation<T> implements Iterable<Chromosone<T>> {
       }
    };
 
-   private final List<Chromosone<T>> orderedChromosones;
+   private final ImmutableList<Chromosone<T>> orderedChromosones;
    private final long sumFitness;
 
    Generation(List<Chromosone<T>> chromosones) {
@@ -39,10 +40,10 @@ public class Generation<T> implements Iterable<Chromosone<T>> {
    }
 
    /** Returns sorted copy of input */
-   private static <T> List<Chromosone<T>> createOrderedList(List<Chromosone<T>> chromosones) {
+   private static <T> ImmutableList<Chromosone<T>> createOrderedList(List<Chromosone<T>> chromosones) {
       final List<Chromosone<T>> orderedChromosones = new ArrayList<Chromosone<T>>(chromosones);
       sort(orderedChromosones, CHROMOSONE_COMPARATOR);
-      return orderedChromosones;
+      return createList(orderedChromosones);
    }
 
    private static <T> long getSumFitness(List<Chromosone<T>> chromosones) {
@@ -75,6 +76,6 @@ public class Generation<T> implements Iterable<Chromosone<T>> {
 
    @Override
    public Iterator<Chromosone<T>> iterator() {
-      return new UnmodifiableIterator<>(orderedChromosones);
+      return orderedChromosones.iterator();
    }
 }

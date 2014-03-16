@@ -1,12 +1,14 @@
 package com.how2examples.ai.cluster.kmeans;
 
+import static com.how2examples.ai.util.ImmutableListFactory.createList;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import junit.framework.TestCase;
 
-import com.how2examples.ai.util.ImmutableArray;
+import com.google.common.collect.ImmutableList;
 import com.how2examples.ai.util.data.DataSetRow;
 
 public class KMeansClusterTest extends TestCase {
@@ -34,7 +36,7 @@ public class KMeansClusterTest extends TestCase {
 
    public void testGetMembers() {
       final KMeansCluster c = createCluster();
-      final ImmutableArray<DataSetRow> actualMembers = c.getMembers();
+      final ImmutableList<DataSetRow> actualMembers = c.getMembers();
       assertEquals(expectedMembers.length, actualMembers.size());
       for (int i = 0; i < expectedMembers.length; i++) {
          final DataSetRow expectedRow = new DataSetRow(expectedMembers[i]);
@@ -53,6 +55,6 @@ public class KMeansClusterTest extends TestCase {
       for (final String[] expectedMember : expectedMembers) {
          members.add(new DataSetRow(expectedMember));
       }
-      return new KMeansCluster(expectedCentroid, new ImmutableArray<DataSetRow>(members));
+      return new KMeansCluster(expectedCentroid, createList(members));
    }
 }

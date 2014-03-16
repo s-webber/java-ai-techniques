@@ -1,6 +1,6 @@
 package com.how2examples.ai.decisiontree;
 
-import com.how2examples.ai.util.ImmutableArray;
+import com.google.common.collect.ImmutableList;
 import com.how2examples.ai.util.data.DataSetRow;
 
 /**
@@ -15,5 +15,5 @@ import com.how2examples.ai.util.data.DataSetRow;
  * See: <a href="http://en.wikipedia.org/wiki/Decision_tree_learning#Formulae">Wikipedia</a>
  */
 public interface DecisionTreeStrategy {
-   double gain(final ImmutableArray<DataSetRow> data, final int columnIndex, final int outcomeColumnIndex);
+   double gain(final ImmutableList<DataSetRow> data, final int columnIndex, final int outcomeColumnIndex);
 }

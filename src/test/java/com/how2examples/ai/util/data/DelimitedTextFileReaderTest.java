@@ -7,7 +7,7 @@ import java.io.File;
 
 import junit.framework.TestCase;
 
-import com.how2examples.ai.util.ImmutableArray;
+import com.google.common.collect.ImmutableList;
 
 public class DelimitedTextFileReaderTest extends TestCase {
    private final static String HEADER = "h1,h2,h3\n";
@@ -28,7 +28,7 @@ public class DelimitedTextFileReaderTest extends TestCase {
 
       assertEquals(5, ds.getNumberOfColumns());
       assertEquals("[a, b, c, d, e]", ds.getKeys().toString());
-      final ImmutableArray<DataSetRow> values = ds.getValues();
+      final ImmutableList<DataSetRow> values = ds.getValues();
       assertEquals(input.length, ds.size());
       assertEquals(input.length, values.size());
       for (int i = 0; i < input.length; i++) {
@@ -89,7 +89,7 @@ public class DelimitedTextFileReaderTest extends TestCase {
    }
 
    private void assertDataSet(final DataSet ds, final String... expected) {
-      final ImmutableArray<DataSetRow> values = ds.getValues();
+      final ImmutableList<DataSetRow> values = ds.getValues();
 
       assertEquals(expected.length, ds.size());
       assertEquals(expected.length, values.size());

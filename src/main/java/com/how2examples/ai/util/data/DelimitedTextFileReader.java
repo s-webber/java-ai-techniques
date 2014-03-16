@@ -1,12 +1,12 @@
 package com.how2examples.ai.util.data;
 
+import static com.how2examples.ai.util.ImmutableListFactory.createList;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.how2examples.ai.util.ImmutableArray;
 
 /**
  * Constructs {@link DataSet} instances based on character-separated values read from a file.
@@ -44,7 +44,7 @@ public class DelimitedTextFileReader {
                values.add(new DataSetRow(value));
             }
          }
-         return new DataSet(new ImmutableArray<String>(keys), new ImmutableArray<DataSetRow>(values));
+         return new DataSet(createList(keys), createList(values));
       }
    }
 

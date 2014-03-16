@@ -2,7 +2,7 @@ package com.how2examples.ai.cluster.hierarchy;
 
 import junit.framework.TestCase;
 
-import com.how2examples.ai.util.ImmutableArray;
+import com.how2examples.ai.util.ImmutableListFactory;
 import com.how2examples.ai.util.data.DataSetRow;
 
 public class LeafClusterTest extends TestCase {
@@ -13,7 +13,7 @@ public class LeafClusterTest extends TestCase {
 
    public void testGetChildren() {
       final LeafCluster c = createLeafCluster();
-      assertSame(ImmutableArray.EMPTY_IMMUTABLE_ARRAY, c.getChildren());
+      assertSame(ImmutableListFactory.emptyList(), c.getChildren());
    }
 
    public void testGetVector() {

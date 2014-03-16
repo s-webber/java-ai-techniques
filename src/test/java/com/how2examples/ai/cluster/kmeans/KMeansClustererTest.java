@@ -4,7 +4,7 @@ import static com.how2examples.ai.TestUtils.assertArraysEqual;
 import static com.how2examples.ai.TestUtils.getDataSet;
 import junit.framework.TestCase;
 
-import com.how2examples.ai.util.ImmutableArray;
+import com.google.common.collect.ImmutableList;
 import com.how2examples.ai.util.Randomiser;
 import com.how2examples.ai.util.data.DataSet;
 import com.how2examples.ai.util.data.DataSetRow;
@@ -13,7 +13,7 @@ import com.how2examples.ai.util.math.EuclideanFunction;
 public class KMeansClustererTest extends TestCase {
    public void testOneCluster() throws Exception {
       final int numberOfClusters = 1;
-      final ImmutableArray<KMeansCluster> clusters = createClusters(numberOfClusters);
+      final ImmutableList<KMeansCluster> clusters = createClusters(numberOfClusters);
       assertEquals(numberOfClusters, clusters.size());
       final KMeansCluster cluster = clusters.get(0);
       assertMembers(cluster, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L");
@@ -22,7 +22,7 @@ public class KMeansClustererTest extends TestCase {
 
    public void testTwoClusters() throws Exception {
       final int numberOfClusters = 2;
-      final ImmutableArray<KMeansCluster> clusters = createClusters(numberOfClusters);
+      final ImmutableList<KMeansCluster> clusters = createClusters(numberOfClusters);
       assertEquals(numberOfClusters, clusters.size());
       assertMembers(clusters.get(0), "A", "C", "F", "G", "L");
       assertMembers(clusters.get(1), "B", "D", "E", "H", "I", "J", "K");
@@ -30,7 +30,7 @@ public class KMeansClustererTest extends TestCase {
 
    public void testThreeClusters() throws Exception {
       final int numberOfClusters = 3;
-      final ImmutableArray<KMeansCluster> clusters = createClusters(numberOfClusters);
+      final ImmutableList<KMeansCluster> clusters = createClusters(numberOfClusters);
       assertEquals(numberOfClusters, clusters.size());
       assertMembers(clusters.get(0), "A", "C", "F", "L");
       assertMembers(clusters.get(1), "B", "D", "E", "H", "I", "J", "K");
@@ -39,7 +39,7 @@ public class KMeansClustererTest extends TestCase {
 
    public void testMoreClustersThanDataSetRows() throws Exception {
       final int numberOfClusters = 13;
-      final ImmutableArray<KMeansCluster> clusters = createClusters(numberOfClusters);
+      final ImmutableList<KMeansCluster> clusters = createClusters(numberOfClusters);
       assertEquals(numberOfClusters, clusters.size());
       assertMembers(clusters.get(0), "A", "F");
       assertMembers(clusters.get(1), "B");
@@ -56,11 +56,11 @@ public class KMeansClustererTest extends TestCase {
       assertMembers(clusters.get(12));
    }
 
-   private ImmutableArray<KMeansCluster> createClusters(final int numberOfClusters) throws Exception {
+   private ImmutableList<KMeansCluster> createClusters(final int numberOfClusters) throws Exception {
       final Randomiser randomiser = new DummyRandomiser();
       final KMeansClusterer clusterer = new KMeansClusterer(new EuclideanFunction(), randomiser);
       final DataSet dataSet = getDataSet(this);
-      final ImmutableArray<KMeansCluster> input = clusterer.createClusters(dataSet, numberOfClusters);
+      final ImmutableList<KMeansCluster> input = clusterer.createClusters(dataSet, numberOfClusters);
       return clusterer.cluster(dataSet, input);
    }
 
@@ -69,7 +69,7 @@ public class KMeansClustererTest extends TestCase {
    }
 
    private String[] getMemberOutcomes(KMeansCluster c) {
-      final ImmutableArray<DataSetRow> members = c.getMembers();
+      final ImmutableList<DataSetRow> members = c.getMembers();
       final String[] outcomes = new String[members.size()];
       for (int i = 0; i < outcomes.length; i++) {
          outcomes[i] = members.get(i).getOutcome();
@@ -94,7 +94,7 @@ public class KMeansClustererTest extends TestCase {
       }
 
       @Override
-      public <T> ImmutableArray<T> shuffle(ImmutableArray<T> locationNames) {
+      public <T> ImmutableList<T> shuffle(ImmutableList<T> locationNames) {
          throw new UnsupportedOperationException();
       }
    }

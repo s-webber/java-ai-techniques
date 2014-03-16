@@ -2,7 +2,7 @@ package com.how2examples.ai.cluster.kmeans;
 
 import java.util.Arrays;
 
-import com.how2examples.ai.util.ImmutableArray;
+import com.google.common.collect.ImmutableList;
 import com.how2examples.ai.util.data.DataSetRow;
 
 /**
@@ -12,9 +12,9 @@ public class KMeansCluster {
    /** The coordinates of the central point of the cluster. */
    private final double[] centroid;
    /** The items that are associated with (i.e. have been classified as being part of) this cluster. */
-   private final ImmutableArray<DataSetRow> members;
+   private final ImmutableList<DataSetRow> members;
 
-   KMeansCluster(double[] centroid, ImmutableArray<DataSetRow> members) {
+   KMeansCluster(double[] centroid, ImmutableList<DataSetRow> members) {
       this.centroid = centroid;
       this.members = members;
    }
@@ -23,7 +23,7 @@ public class KMeansCluster {
       return Arrays.copyOf(centroid, centroid.length);
    }
 
-   public ImmutableArray<DataSetRow> getMembers() {
+   public ImmutableList<DataSetRow> getMembers() {
       return members;
    }
 }

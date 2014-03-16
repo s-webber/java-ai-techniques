@@ -1,6 +1,6 @@
 package com.how2examples.ai.cluster.hierarchy;
 
-import com.how2examples.ai.util.ImmutableArray;
+import com.google.common.collect.ImmutableList;
 
 class DummyHierarchicalCluster implements HierarchicalCluster {
    @Override
@@ -9,7 +9,7 @@ class DummyHierarchicalCluster implements HierarchicalCluster {
    }
 
    @Override
-   public ImmutableArray<HierarchicalCluster> getChildren() {
+   public ImmutableList<HierarchicalCluster> getChildren() {
       throw new UnsupportedOperationException();
    }
 

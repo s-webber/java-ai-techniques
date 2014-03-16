@@ -1,6 +1,6 @@
 package com.how2examples.ai.util.data;
 
-import com.how2examples.ai.util.ImmutableArray;
+import com.google.common.collect.ImmutableList;
 
 /**
  * Represents a collection of data presented in tabular form.
@@ -8,10 +8,10 @@ import com.how2examples.ai.util.ImmutableArray;
  * Each column represents a particular variable.
  */
 public class DataSet {
-   private final ImmutableArray<String> keys;
-   private final ImmutableArray<DataSetRow> values;
+   private final ImmutableList<String> keys;
+   private final ImmutableList<DataSetRow> values;
 
-   public DataSet(ImmutableArray<String> key, ImmutableArray<DataSetRow> values) {
+   public DataSet(ImmutableList<String> key, ImmutableList<DataSetRow> values) {
       this.keys = key;
       this.values = values;
    }
@@ -20,11 +20,11 @@ public class DataSet {
       return keys.size();
    }
 
-   public ImmutableArray<String> getKeys() {
+   public ImmutableList<String> getKeys() {
       return keys;
    }
 
-   public ImmutableArray<DataSetRow> getValues() {
+   public ImmutableList<DataSetRow> getValues() {
       return values;
    }
 

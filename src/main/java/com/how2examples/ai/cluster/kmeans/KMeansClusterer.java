@@ -1,11 +1,14 @@
 package com.how2examples.ai.cluster.kmeans;
 
+import static com.how2examples.ai.util.ImmutableListFactory.createList;
+import static com.how2examples.ai.util.ImmutableListFactory.emptyList;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.how2examples.ai.util.ImmutableArray;
+import com.google.common.collect.ImmutableList;
 import com.how2examples.ai.util.Randomiser;
 import com.how2examples.ai.util.data.DataSet;
 import com.how2examples.ai.util.data.DataSetRow;
@@ -38,7 +41,7 @@ public class KMeansClusterer {
       this.randomiser = randomiser;
    }
 
-   public ImmutableArray<KMeansCluster> createClusters(final DataSet dataSet, final int numberOfClusters) {
+   public ImmutableList<KMeansCluster> createClusters(final DataSet dataSet, final int numberOfClusters) {
       // get min and max ranges of all input data
       final double[][] minmax = getMinAndMaxRanges(dataSet);
       final double[] min = minmax[0];
@@ -50,11 +53,11 @@ public class KMeansClusterer {
          clusters[i] = createCluster(min, max);
       }
 
-      return new ImmutableArray<KMeansCluster>(clusters);
+      return createList(clusters);
    }
 
    private double[][] getMinAndMaxRanges(final DataSet dataSet) {
-      final ImmutableArray<DataSetRow> values = dataSet.getValues();
+      final ImmutableList<DataSetRow> values = dataSet.getValues();
       final int numElementsPerRow = values.get(0).getInputsAsDoubleArray().length;
       final double[] min = new double[numElementsPerRow];
       final double[] max = new double[numElementsPerRow];
@@ -76,19 +79,23 @@ public class KMeansClusterer {
       return new double[][] {min, max};
    }
 
-   @SuppressWarnings("unchecked")
    private KMeansCluster createCluster(final double[] min, final double[] max) {
       final double[] clusterValues = new double[min.length];
       for (int i = 0; i < min.length; i++) {
          clusterValues[i] = randomiser.getDouble(min[i], max[i]);
       }
-      return new KMeansCluster(clusterValues, ImmutableArray.EMPTY_IMMUTABLE_ARRAY);
+      final ImmutableList<DataSetRow> emptyList = emptyList();
+      return new KMeansCluster(clusterValues, emptyList);
    }
 
-   public ImmutableArray<KMeansCluster> cluster(final DataSet dataSet, final ImmutableArray<KMeansCluster> inputClusters) throws Exception {
-      final KMeansCluster[] outputClusters = inputClusters.toArray();
+   public ImmutableList<KMeansCluster> cluster(final DataSet dataSet, final ImmutableList<KMeansCluster> inputClusters) throws Exception {
+      final KMeansCluster[] outputClusters = toArray(inputClusters);
       performIterations(dataSet, outputClusters);
-      return new ImmutableArray<KMeansCluster>(outputClusters);
+      return createList(outputClusters);
+   }
+
+   private KMeansCluster[] toArray(final ImmutableList<KMeansCluster> inputClusters) {
+      return inputClusters.toArray(new KMeansCluster[inputClusters.size()]);
    }
 
    private void performIterations(final DataSet dataSet, final KMeansCluster[] clusters) {
@@ -142,7 +149,7 @@ public class KMeansClusterer {
       boolean isUpdated = false;
       for (int i = 0; i < clusters.length; i++) {
          final KMeansCluster cluster = clusters[i];
-         final ImmutableArray<DataSetRow> newMembers = new ImmutableArray<DataSetRow>(newAllocationOfVectorsToClusters.get(cluster));
+         final ImmutableList<DataSetRow> newMembers = createList(newAllocationOfVectorsToClusters.get(cluster));
          if (newMembers.size() > 0) {
             final double[] newCentroid = averageVectors(newMembers);
             if (isUpdated(cluster.getCentroid(), newCentroid)) {
@@ -154,7 +161,7 @@ public class KMeansClusterer {
       return isUpdated;
    }
 
-   private static double[] averageVectors(final ImmutableArray<DataSetRow> rows) {
+   private static double[] averageVectors(final ImmutableList<DataSetRow> rows) {
       final double[][] input = new double[rows.size()][];
       for (int i = 0; i < rows.size(); i++) {
          final DataSetRow row = rows.get(i);

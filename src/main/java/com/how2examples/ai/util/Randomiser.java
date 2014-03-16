@@ -1,5 +1,7 @@
 package com.how2examples.ai.util;
 
+import com.google.common.collect.ImmutableList;
+
 /**
  * Generates random values.
  * <p>
@@ -25,5 +27,5 @@ public interface Randomiser {
    /**
     * Returns a new randomly permutated version of the specified input.
     */
-   <T> ImmutableArray<T> shuffle(ImmutableArray<T> input);
+   <T> ImmutableList<T> shuffle(ImmutableList<T> input);
 }

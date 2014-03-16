@@ -1,23 +1,19 @@
 package com.how2examples.ai.util.data;
 
+import static com.how2examples.ai.util.ImmutableListFactory.createList;
 import junit.framework.TestCase;
 
-import com.how2examples.ai.util.ImmutableArray;
+import com.google.common.collect.ImmutableList;
 
 public class DataSetTest extends TestCase {
    public void test() {
-      final ImmutableArray<String> keys = toImmutableArray("fgh", "fghfhj", "ytry");
-      final ImmutableArray<DataSetRow> rows = toImmutableArray(row("a", "b", "c"), row("1678", "-876", "7868"), row("12", "hjgjh", "-9.25"));
+      final ImmutableList<String> keys = createList("fgh", "fghfhj", "ytry");
+      final ImmutableList<DataSetRow> rows = createList(row("a", "b", "c"), row("1678", "-876", "7868"), row("12", "hjgjh", "-9.25"));
       final DataSet dataSet = new DataSet(keys, rows);
 
       assertEquals(keys.size(), dataSet.getNumberOfColumns());
       assertSame(keys, dataSet.getKeys());
       assertSame(rows, dataSet.getValues());
-   }
-
-   @SuppressWarnings("unchecked")
-   private <E> ImmutableArray<E> toImmutableArray(E... elements) {
-      return new ImmutableArray<>(elements);
    }
 
    private DataSetRow row(String... data) {

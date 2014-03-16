@@ -2,7 +2,7 @@ package com.how2examples.ai.cluster.hierarchy;
 
 import junit.framework.TestCase;
 
-import com.how2examples.ai.util.ImmutableArray;
+import com.google.common.collect.ImmutableList;
 import com.how2examples.ai.util.data.DataSetRow;
 
 public class ParentClusterTest extends TestCase {
@@ -26,7 +26,7 @@ public class ParentClusterTest extends TestCase {
    }
 
    public void testGetChildren() {
-      final ImmutableArray<HierarchicalCluster> children = parentCluster.getChildren();
+      final ImmutableList<HierarchicalCluster> children = parentCluster.getChildren();
       assertEquals(2, children.size());
       assertSame(child1, children.get(0));
       assertSame(child2, children.get(1));

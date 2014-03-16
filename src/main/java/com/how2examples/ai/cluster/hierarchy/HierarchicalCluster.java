@@ -1,6 +1,6 @@
 package com.how2examples.ai.cluster.hierarchy;
 
-import com.how2examples.ai.util.ImmutableArray;
+import com.google.common.collect.ImmutableList;
 
 /**
  * A node in a tree structure of clusters.
@@ -10,7 +10,7 @@ import com.how2examples.ai.util.ImmutableArray;
 public interface HierarchicalCluster {
    String getId();
 
-   ImmutableArray<HierarchicalCluster> getChildren();
+   ImmutableList<HierarchicalCluster> getChildren();
 
    double[] getVector();
 }
