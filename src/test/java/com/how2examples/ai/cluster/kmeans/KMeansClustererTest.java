@@ -92,5 +92,10 @@ public class KMeansClustererTest extends TestCase {
       public double nextDouble() {
          throw new UnsupportedOperationException();
       }
+
+      @Override
+      public <T> ImmutableArray<T> shuffle(ImmutableArray<T> locationNames) {
+         throw new UnsupportedOperationException();
+      }
    }
 }

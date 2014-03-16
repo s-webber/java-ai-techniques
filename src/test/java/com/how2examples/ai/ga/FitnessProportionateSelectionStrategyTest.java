@@ -6,6 +6,7 @@ import java.util.Queue;
 
 import junit.framework.TestCase;
 
+import com.how2examples.ai.util.ImmutableArray;
 import com.how2examples.ai.util.Randomiser;
 
 public class FitnessProportionateSelectionStrategyTest extends TestCase {
@@ -68,6 +69,11 @@ public class FitnessProportionateSelectionStrategyTest extends TestCase {
       @Override
       public double nextDouble() {
          return data[ctr++];
+      }
+
+      @Override
+      public <T> ImmutableArray<T> shuffle(ImmutableArray<T> locationNames) {
+         throw new UnsupportedOperationException();
       }
    }
 }

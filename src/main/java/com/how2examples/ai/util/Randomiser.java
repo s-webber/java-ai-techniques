@@ -21,4 +21,9 @@ public interface Randomiser {
     * Returns a value between {@code 0.0d} (inclusive) to {@code 1.0d} (exclusive).
     */
    double nextDouble();
+
+   /**
+    * Returns a new randomly permutated version of the specified input.
+    */
+   <T> ImmutableArray<T> shuffle(ImmutableArray<T> input);
 }
