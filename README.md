@@ -13,7 +13,7 @@ This project has been developed for the sole purpose of improving my understandi
 
 ## Approach
 
-The techniques have been implemented using Java 7. The unit tests have been implemented using JUnit and jMock.
+The techniques have been implemented using Java 7 and Google Guava. The unit tests have been implemented using JUnit and jMock.
 
 ## Building
 
