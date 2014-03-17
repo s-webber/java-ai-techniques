@@ -1,7 +1,7 @@
 package com.how2examples.ai.cluster.kmeans;
 
-import static com.how2examples.ai.TestUtils.assertArraysEqual;
 import static com.how2examples.ai.TestUtils.getDataSet;
+import static org.junit.Assert.assertArrayEquals;
 import junit.framework.TestCase;
 
 import com.google.common.collect.ImmutableList;
@@ -17,7 +17,7 @@ public class KMeansClustererTest extends TestCase {
       assertEquals(numberOfClusters, clusters.size());
       final KMeansCluster cluster = clusters.get(0);
       assertMembers(cluster, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L");
-      assertArraysEqual(new double[] {145.75, 132.75}, cluster.getCentroid());
+      assertArrayEquals(new double[] {145.75, 132.75}, cluster.getCentroid(), 0);
    }
 
    public void testTwoClusters() throws Exception {
@@ -65,7 +65,7 @@ public class KMeansClustererTest extends TestCase {
    }
 
    private void assertMembers(KMeansCluster c, String... expectedMembers) {
-      assertArraysEqual(expectedMembers, getMemberOutcomes(c));
+      assertArrayEquals(expectedMembers, getMemberOutcomes(c));
    }
 
    private String[] getMemberOutcomes(KMeansCluster c) {

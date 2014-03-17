@@ -1,11 +1,8 @@
 package com.how2examples.ai;
 
-import static org.junit.Assert.assertTrue;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
 
 import com.how2examples.ai.util.data.DataSet;
 import com.how2examples.ai.util.data.DelimitedTextFileReader;
@@ -20,14 +17,6 @@ public class TestUtils {
    private static String getClassName(final Object o) {
       final String fullName = o.getClass().getName();
       return fullName.substring(fullName.lastIndexOf('.') + 1);
-   }
-
-   public static void assertArraysEqual(final Object[] actual, final Object[] expected) {
-      assertTrue(Arrays.toString(actual) + " " + Arrays.toString(expected), Arrays.equals(actual, expected));
-   }
-
-   public static void assertArraysEqual(final double[] actual, final double[] expected) {
-      assertTrue(Arrays.toString(actual) + " " + Arrays.toString(expected), Arrays.equals(actual, expected));
    }
 
    public static DataSet createDataSet(final String fileContents) throws Exception {
