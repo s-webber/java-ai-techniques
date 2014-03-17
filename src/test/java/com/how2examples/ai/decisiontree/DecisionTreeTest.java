@@ -64,7 +64,7 @@ public class DecisionTreeTest extends TestCase {
    }
 
    public void testSuccess() {
-      final DataSet dataSet = getDataSet(this);
+      final DataSet dataSet = getDataSet(getClass());
       final DecisionTreeNode result = GENERATOR.generateTree(dataSet);
       final String actualTree = DecisionTreeOutputter.draw(result);
       final String expectedTree = "\\-- Income\n"

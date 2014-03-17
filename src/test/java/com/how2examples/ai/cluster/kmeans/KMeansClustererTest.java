@@ -59,7 +59,7 @@ public class KMeansClustererTest extends TestCase {
    private ImmutableList<KMeansCluster> createClusters(final int numberOfClusters) {
       final Randomiser randomiser = new DummyRandomiser();
       final KMeansClusterer clusterer = new KMeansClusterer(new EuclideanFunction(), randomiser);
-      final DataSet dataSet = getDataSet(this);
+      final DataSet dataSet = getDataSet(getClass());
       final ImmutableList<KMeansCluster> input = clusterer.createClusters(dataSet, numberOfClusters);
       return clusterer.cluster(dataSet, input);
    }

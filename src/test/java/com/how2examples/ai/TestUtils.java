@@ -8,19 +8,20 @@ import com.how2examples.ai.util.data.DataSet;
 import com.how2examples.ai.util.data.DelimitedTextFileReader;
 
 public class TestUtils {
-   public static DataSet getDataSet(final Object o) {
-      final String fileName = "src/test/resources/" + getClassName(o) + ".csv";
+   public static DataSet getDataSet(final Class<?> c) {
+      final String fullName = c.getName();
+      final String nameMinusExtension = fullName.substring(fullName.lastIndexOf('.') + 1);
+      return getDataSet(nameMinusExtension);
+   }
+
+   public static DataSet getDataSet(final String name) {
+      final String fileName = "src/test/resources/" + name + ".csv";
       try {
          final File file = new File(fileName);
          return DelimitedTextFileReader.readCommaSeperated(file);
       } catch (IOException e) {
          throw new RuntimeException("Could not read data set from: " + fileName);
       }
-   }
-
-   private static String getClassName(final Object o) {
-      final String fullName = o.getClass().getName();
-      return fullName.substring(fullName.lastIndexOf('.') + 1);
    }
 
    public static DataSet createDataSet(final String fileContents) {
