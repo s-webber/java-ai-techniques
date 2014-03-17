@@ -88,7 +88,7 @@ public class KMeansClusterer {
       return new KMeansCluster(clusterValues, emptyList);
    }
 
-   public ImmutableList<KMeansCluster> cluster(final DataSet dataSet, final ImmutableList<KMeansCluster> inputClusters) throws Exception {
+   public ImmutableList<KMeansCluster> cluster(final DataSet dataSet, final ImmutableList<KMeansCluster> inputClusters) {
       final KMeansCluster[] outputClusters = toArray(inputClusters);
       performIterations(dataSet, outputClusters);
       return createList(outputClusters);

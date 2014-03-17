@@ -11,7 +11,7 @@ import com.how2examples.ai.util.data.DataSetRow;
 import com.how2examples.ai.util.math.EuclideanFunction;
 
 public class KMeansClustererTest extends TestCase {
-   public void testOneCluster() throws Exception {
+   public void testOneCluster() {
       final int numberOfClusters = 1;
       final ImmutableList<KMeansCluster> clusters = createClusters(numberOfClusters);
       assertEquals(numberOfClusters, clusters.size());
@@ -20,7 +20,7 @@ public class KMeansClustererTest extends TestCase {
       assertArrayEquals(new double[] {145.75, 132.75}, cluster.getCentroid(), 0);
    }
 
-   public void testTwoClusters() throws Exception {
+   public void testTwoClusters() {
       final int numberOfClusters = 2;
       final ImmutableList<KMeansCluster> clusters = createClusters(numberOfClusters);
       assertEquals(numberOfClusters, clusters.size());
@@ -28,7 +28,7 @@ public class KMeansClustererTest extends TestCase {
       assertMembers(clusters.get(1), "B", "D", "E", "H", "I", "J", "K");
    }
 
-   public void testThreeClusters() throws Exception {
+   public void testThreeClusters() {
       final int numberOfClusters = 3;
       final ImmutableList<KMeansCluster> clusters = createClusters(numberOfClusters);
       assertEquals(numberOfClusters, clusters.size());
@@ -37,7 +37,7 @@ public class KMeansClustererTest extends TestCase {
       assertMembers(clusters.get(2), "G");
    }
 
-   public void testMoreClustersThanDataSetRows() throws Exception {
+   public void testMoreClustersThanDataSetRows() {
       final int numberOfClusters = 13;
       final ImmutableList<KMeansCluster> clusters = createClusters(numberOfClusters);
       assertEquals(numberOfClusters, clusters.size());
@@ -56,7 +56,7 @@ public class KMeansClustererTest extends TestCase {
       assertMembers(clusters.get(12));
    }
 
-   private ImmutableList<KMeansCluster> createClusters(final int numberOfClusters) throws Exception {
+   private ImmutableList<KMeansCluster> createClusters(final int numberOfClusters) {
       final Randomiser randomiser = new DummyRandomiser();
       final KMeansClusterer clusterer = new KMeansClusterer(new EuclideanFunction(), randomiser);
       final DataSet dataSet = getDataSet(this);

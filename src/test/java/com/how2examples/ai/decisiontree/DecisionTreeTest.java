@@ -1,9 +1,9 @@
 package com.how2examples.ai.decisiontree;
 
 import static com.how2examples.ai.TestUtils.createDataSet;
+import static com.how2examples.ai.TestUtils.getDataSet;
 import junit.framework.TestCase;
 
-import com.how2examples.ai.TestUtils;
 import com.how2examples.ai.util.data.DataSet;
 import com.how2examples.ai.util.data.DataSetRow;
 
@@ -11,7 +11,7 @@ public class DecisionTreeTest extends TestCase {
    private static final DecisionTreeStrategy STRATEGY = new InformationGainStrategy();
    private static final DecisionTreeGenerator GENERATOR = new DecisionTreeGenerator(STRATEGY);
 
-   public void testOneInputColumn() throws Exception {
+   public void testOneInputColumn() {
       final DataSet dataSet = createDataSet("header1,header2\n" //
                                             + "a,x\n"
                                             + "b,y\n"
@@ -32,7 +32,7 @@ public class DecisionTreeTest extends TestCase {
       assertEquals(expectedTree, actualTree);
    }
 
-   public void testTwoInputColumns() throws Exception {
+   public void testTwoInputColumns() {
       final DataSet dataSet = createDataSet("header1,header2,header3\n" //
                                             + "a,2,w\n"
                                             + "a,0,x\n"
@@ -63,8 +63,8 @@ public class DecisionTreeTest extends TestCase {
       assertEquals(expectedTree, actualTree);
    }
 
-   public void testSuccess() throws Exception {
-      final DataSet dataSet = dataSet();
+   public void testSuccess() {
+      final DataSet dataSet = getDataSet(this);
       final DecisionTreeNode result = GENERATOR.generateTree(dataSet);
       final String actualTree = DecisionTreeOutputter.draw(result);
       final String expectedTree = "\\-- Income\n"
@@ -98,7 +98,7 @@ public class DecisionTreeTest extends TestCase {
       }
    }
 
-   public void testOnlyOneOutcome() throws Exception {
+   public void testOnlyOneOutcome() {
       final DataSet dataSet = createDataSet("header1,header2\n" //
                                             + "a,x\n"
                                             + "b,x\n"
@@ -116,7 +116,7 @@ public class DecisionTreeTest extends TestCase {
     * the decision tree generator should throw an exception. (This is expected as, in the current implementation, each
     * leaf node of the tree can only represent a single outcome.)
     */
-   public void testNotSolveable() throws Exception {
+   public void testNotSolveable() {
       final DataSet dataSet = createDataSet("header1,header2\n" //
                                             + "a,x\n"
                                             + "b,y\n"
@@ -127,9 +127,5 @@ public class DecisionTreeTest extends TestCase {
       } catch (IllegalArgumentException e) {
          assertEquals("The following 2 rows share the same inputs but not the same outcome: [[a, x], [a, z]]", e.getMessage());
       }
-   }
-
-   private DataSet dataSet() throws Exception {
-      return TestUtils.getDataSet(this);
    }
 }

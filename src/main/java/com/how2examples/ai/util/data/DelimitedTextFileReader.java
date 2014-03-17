@@ -5,6 +5,7 @@ import static com.how2examples.ai.util.ImmutableListFactory.createList;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class DelimitedTextFileReader {
     * @param inputCsvFile the file to read the the comma-separated values from
     * @return A {@link DataSet} representing the comma-separated values read from the specified file.
     */
-   public static DataSet readCommaSeperated(final File inputCsvFile) throws Exception {
+   public static DataSet readCommaSeperated(final File inputCsvFile) throws IOException {
       try (final FileReader fr = new FileReader(inputCsvFile); final BufferedReader br = new BufferedReader(fr)) {
          String next = br.readLine();
          final String[] keys = next.split(DELIMETER);

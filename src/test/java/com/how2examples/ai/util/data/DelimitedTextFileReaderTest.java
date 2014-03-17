@@ -15,7 +15,7 @@ public class DelimitedTextFileReaderTest extends TestCase {
    private final static String SHORT_ROW = "r1,r2\n";
    private final static String LONG_ROW = "r1,r2,r3,r4\n";
 
-   public void testCsv() throws Exception {
+   public void testCsv() {
       final String header = "a,b,c,d,e\n";
       // input includes a mixture of letters, numbers and other characters (including whitespace) - plus empty elements
       final String[] input = {"1.04,2,3_3,4e0,5\n", "qwe\trty,!\"$()-+={}[];@~#/?><.,,r t|yu/i,%^&*t\n", "z,x,c,v b N m,b\n"};
@@ -36,34 +36,34 @@ public class DelimitedTextFileReaderTest extends TestCase {
       }
    }
 
-   public void testDuplicatesAllowed() throws Exception {
+   public void testDuplicatesAllowed() {
       final DataSet ds = createDataSet(HEADER + VALID_ROW + VALID_ROW);
       assertDataSet(ds, VALID_ROW, VALID_ROW);
    }
 
-   public void testCommentsIgnored() throws Exception {
+   public void testCommentsIgnored() {
       final DataSet ds = createDataSet(HEADER + "#a comment\n" + VALID_ROW + "#x1,x2,x3\n" + VALID_ROW + "#another comment\n");
       assertDataSet(ds, VALID_ROW, VALID_ROW);
    }
 
-   public void testBlankLinesIgnored() throws Exception {
+   public void testBlankLinesIgnored() {
       final DataSet ds = createDataSet(HEADER + "\n" + VALID_ROW + "\t\n" + VALID_ROW + " \n");
       assertDataSet(ds, VALID_ROW, VALID_ROW);
    }
 
-   public void testNoNewLineNeededAtEndOfFile() throws Exception {
+   public void testNoNewLineNeededAtEndOfFile() {
       final DataSet ds = createDataSet(HEADER + VALID_ROW + VALID_ROW.trim());
       assertDataSet(ds, VALID_ROW, VALID_ROW);
    }
 
-   public void testTooFewElements() throws Exception {
+   public void testTooFewElements() {
       assertTooFewElements(HEADER + SHORT_ROW + VALID_ROW + VALID_ROW);
       assertTooFewElements(HEADER + VALID_ROW + SHORT_ROW + VALID_ROW);
       assertTooFewElements(HEADER + VALID_ROW + VALID_ROW + SHORT_ROW);
       assertTooFewElements(HEADER + SHORT_ROW + SHORT_ROW + SHORT_ROW);
    }
 
-   public void testTooManyElements() throws Exception {
+   public void testTooManyElements() {
       assertTooManyElements(HEADER + LONG_ROW + VALID_ROW + VALID_ROW);
       assertTooManyElements(HEADER + VALID_ROW + LONG_ROW + VALID_ROW);
       assertTooManyElements(HEADER + VALID_ROW + VALID_ROW + LONG_ROW);

@@ -19,7 +19,7 @@ public class HierarchicalClusterer {
       this.distanceFunction = distanceFunction;
    }
 
-   public HierarchicalCluster cluster(final DataSet dataSet) throws Exception {
+   public HierarchicalCluster cluster(final DataSet dataSet) {
       final List<HierarchicalCluster> clusters = createLeafClusters(dataSet);
 
       final ClusterPairDistanceCache distanceCache = new ClusterPairDistanceCache(distanceFunction);
