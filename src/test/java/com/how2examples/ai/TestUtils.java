@@ -10,8 +10,8 @@ import com.how2examples.ai.util.data.DelimitedTextFileReader;
 public class TestUtils {
    public static DataSet getDataSet(final Class<?> c) {
       final String fullName = c.getName();
-      final String nameMinusExtension = fullName.substring(fullName.lastIndexOf('.') + 1);
-      return getDataSet(nameMinusExtension);
+      final String nameMinusPackage = fullName.substring(fullName.lastIndexOf('.') + 1);
+      return getDataSet(nameMinusPackage);
    }
 
    public static DataSet getDataSet(final String name) {
