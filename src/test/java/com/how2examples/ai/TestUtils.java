@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import org.junit.Assert;
+
 import com.how2examples.ai.util.data.DataSet;
 import com.how2examples.ai.util.data.DelimitedTextFileReader;
 
@@ -41,6 +43,10 @@ public class TestUtils {
       } catch (final IOException e) {
          throw new RuntimeException(e);
       }
+   }
+
+   public static void assertExactlyEquals(double expected, double actual) {
+      Assert.assertEquals(expected, actual, 0);
    }
 
    private static File createTempFile() {
