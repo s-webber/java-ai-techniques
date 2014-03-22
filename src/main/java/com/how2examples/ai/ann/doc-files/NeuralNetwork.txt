@@ -1,0 +1,26 @@
+@startuml NeuralNetwork.png
+hide members
+
+interface ActivationFunction {
++activate(double)
+}
+class BinaryStepFunction
+class LogisticFunction
+show ActivationFunction method
+ActivationFunction <|-- BinaryStepFunction
+ActivationFunction <|-- LogisticFunction
+
+class Neuron
+Neuron o-- ActivationFunction
+Neuron o-- Connection
+
+class Connection
+Connection o-- Neuron
+
+class Layer
+Layer o-- Neuron
+
+class NeuralNetwork
+NeuralNetwork o-- Layer
+
+@enduml
