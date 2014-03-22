@@ -1,13 +1,15 @@
 package com.how2examples.ai.ga;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertSame;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.lib.legacy.ClassImposteriser;
+import org.junit.Test;
 
-public class GeneticAlgorithmControllerTest extends TestCase {
+public class GeneticAlgorithmControllerTest {
    @SuppressWarnings("unchecked")
+   @Test
    public void test() {
       final Mockery context = createContext();
       final GenerationFactory<Object> generationFactory = context.mock(GenerationFactory.class);

@@ -1,28 +1,37 @@
 package com.how2examples.ai.cluster.hierarchy;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
-public class ClusterPairTest extends TestCase {
+import org.junit.Test;
+
+public class ClusterPairTest {
    private final HierarchicalCluster c1 = new DummyHierarchicalCluster();
    private final HierarchicalCluster c2 = new DummyHierarchicalCluster();
    private final HierarchicalCluster c3 = new DummyHierarchicalCluster();
    private final HierarchicalCluster c4 = new DummyHierarchicalCluster();
    private final ClusterPair clusterPair = new ClusterPair(c1, c2);
 
+   @Test
    public void testFirstCluster() {
       assertSame(c1, clusterPair.getFirstCluster());
    }
 
+   @Test
    public void testSecondCluster() {
       assertSame(c2, clusterPair.getSecondCluster());
    }
 
+   @Test
    public void testEqualsTrue() {
       assertPairEqual(clusterPair, clusterPair);
       assertPairEqual(clusterPair, new ClusterPair(c1, c2));
       assertPairEqual(clusterPair, new ClusterPair(c2, c1));
    }
 
+   @Test
    public void testEqualsFalse() {
       assertPairNotEqual(clusterPair, new ClusterPair(c1, c1));
       assertPairNotEqual(clusterPair, new ClusterPair(c3, c2));

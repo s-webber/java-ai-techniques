@@ -3,16 +3,15 @@ package com.how2examples.ai.minimax;
 import static com.how2examples.ai.minimax.MiniMaxPlayer.PLAYER_1;
 import static com.how2examples.ai.minimax.MiniMaxPlayer.PLAYER_2;
 import static com.how2examples.ai.minimax.MiniMaxSearch.minimax;
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
+import org.junit.Test;
 
-import com.how2examples.ai.minimax.MiniMaxNode;
-import com.how2examples.ai.minimax.MiniMaxPlayer;
-import com.how2examples.ai.minimax.MiniMaxSearch;
-
-public class MiniMaxSearchTest extends TestCase {
+public class MiniMaxSearchTest {
    private final Mockery context = new Mockery();
 
    private final MiniMaxNode root = context.mock(MiniMaxNode.class, "root");
@@ -26,11 +25,13 @@ public class MiniMaxSearchTest extends TestCase {
    private final MiniMaxNode b_a_a = context.mock(MiniMaxNode.class, "b_a_a");
    private final MiniMaxNode b_a_b = context.mock(MiniMaxNode.class, "b_a_b");
 
+   @Test
    public void testNoPossibleMoves() {
       expectGetChildren(root);
       assertNull(minimax(root, PLAYER_1));
    }
 
+   @Test
    public void testOnePossibleMovePlayer1() {
       expectGetChildren(root, a);
       expectGetChildren(a);
@@ -38,6 +39,7 @@ public class MiniMaxSearchTest extends TestCase {
       assertSame(a, MiniMaxSearch.minimax(root, PLAYER_1));
    }
 
+   @Test
    public void testOnePossibleMovePlayer2() {
       expectGetChildren(root, a);
       expectGetChildren(a);
@@ -45,6 +47,7 @@ public class MiniMaxSearchTest extends TestCase {
       assertSame(a, MiniMaxSearch.minimax(root, PLAYER_2));
    }
 
+   @Test
    public void testMultiplePossibleMoves() {
       expectGetChildren(root, a, b, c);
       expectGetChildren(a);
@@ -58,6 +61,7 @@ public class MiniMaxSearchTest extends TestCase {
       assertSame(b, minimax(root, PLAYER_1));
    }
 
+   @Test
    public void testOneMoveAhead_1() {
       createOneMoveAheadChildrenExpectations();
 
@@ -72,6 +76,7 @@ public class MiniMaxSearchTest extends TestCase {
       assertEquals(b, minimax(root, PLAYER_1));
    }
 
+   @Test
    public void testOneMoveAhead_2() {
       createOneMoveAheadChildrenExpectations();
 
@@ -86,6 +91,7 @@ public class MiniMaxSearchTest extends TestCase {
       assertEquals(a, minimax(root, PLAYER_1));
    }
 
+   @Test
    public void testTwoMovesAhead_1() {
       createTwoMovesAheadChildrenExpectations();
 
@@ -103,6 +109,7 @@ public class MiniMaxSearchTest extends TestCase {
       assertEquals(a, minimax(root, PLAYER_1));
    }
 
+   @Test
    public void testTwoMovesAhead_2() {
       createTwoMovesAheadChildrenExpectations();
 
@@ -120,6 +127,7 @@ public class MiniMaxSearchTest extends TestCase {
       assertEquals(b, minimax(root, PLAYER_1));
    }
 
+   @Test
    public void testTwoMovesAhead_3() {
       createTwoMovesAheadChildrenExpectations();
 
@@ -137,6 +145,7 @@ public class MiniMaxSearchTest extends TestCase {
       assertEquals(c, minimax(root, PLAYER_1));
    }
 
+   @Test
    public void testDepth0() {
       expectGetChildren(root, a);
       expectGetChildren(a, b);
@@ -145,6 +154,7 @@ public class MiniMaxSearchTest extends TestCase {
       assertEquals(a, minimax(root, PLAYER_1, 0));
    }
 
+   @Test
    public void testDepth1() {
       expectGetChildren(root, a);
       expectGetChildren(a, b);
@@ -155,6 +165,7 @@ public class MiniMaxSearchTest extends TestCase {
       assertEquals(a, minimax(root, PLAYER_1, 1));
    }
 
+   @Test
    public void testDepth2() {
       expectGetChildren(root, a);
       expectGetChildren(a, b);
@@ -166,6 +177,7 @@ public class MiniMaxSearchTest extends TestCase {
       assertEquals(a, minimax(root, PLAYER_1, 2));
    }
 
+   @Test
    public void testDepthMinusValue() {
       expectGetChildren(root, a);
       expectGetChildren(a, b);

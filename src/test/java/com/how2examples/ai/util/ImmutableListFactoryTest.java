@@ -1,23 +1,29 @@
 package com.how2examples.ai.util;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.fail;
+
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
 import com.google.common.collect.ImmutableList;
 
-public class ImmutableListFactoryTest extends TestCase {
+public class ImmutableListFactoryTest {
    private static final String FIRST = "abc";
    private static final String SECOND = "xyz";
    private static final String THIRD = "qwe";
 
+   @Test
    public void testEmptyList() {
       assertSame(ImmutableListFactory.emptyList(), ImmutableListFactory.emptyList());
       assertEquals(ImmutableListFactory.emptyList().size(), 0);
    }
 
+   @Test
    public void testCreateFromList() {
       final List<String> input = Arrays.asList(FIRST, SECOND, THIRD);
       final ImmutableList<String> output = ImmutableListFactory.createList(input);
@@ -25,6 +31,7 @@ public class ImmutableListFactoryTest extends TestCase {
       assertListContents(input); // check input isn't altered
    }
 
+   @Test
    public void testCreateFromArray() {
       final String[] input = {FIRST, SECOND, THIRD};
       final ImmutableList<String> output = ImmutableListFactory.createList(input);
@@ -37,6 +44,7 @@ public class ImmutableListFactoryTest extends TestCase {
    }
 
    /** Test that have properly understood behaviour of Guava's ImmutableList. */
+   @Test
    public void testImmutable() {
       final List<String> input = Arrays.asList(FIRST, SECOND, THIRD);
       final ImmutableList<String> output = ImmutableListFactory.createList(input);

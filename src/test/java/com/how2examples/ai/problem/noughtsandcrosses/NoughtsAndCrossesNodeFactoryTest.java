@@ -15,74 +15,91 @@ import static com.how2examples.ai.problem.noughtsandcrosses.Square.TOP_RIGHT;
 import static java.util.EnumSet.complementOf;
 import static java.util.EnumSet.noneOf;
 import static java.util.EnumSet.of;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.util.EnumSet;
 import java.util.Map;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
 import com.how2examples.ai.minimax.MiniMaxPlayer;
 
-public class NoughtsAndCrossesNodeFactoryTest extends TestCase {
+public class NoughtsAndCrossesNodeFactoryTest {
+   @Test
    public void testEmpty1() {
       NoughtsAndCrossesNode n = createNoughtsAndCrossesNode();
       assertNodeState(n, noneOf(Square.class), noneOf(Square.class));
    }
 
+   @Test
    public void testEmpty2() {
       assertNodeState("---" + "---" + "---", noneOf(Square.class), noneOf(Square.class));
    }
 
+   @Test
    public void testTopLeft() {
       assertNodeState("x--" + "---" + "---", TOP_LEFT);
    }
 
+   @Test
    public void testTopCentre() {
       assertNodeState("-x-" + "---" + "---", TOP_CENTRE);
    }
 
+   @Test
    public void testTopRight() {
       assertNodeState("--x" + "---" + "---", TOP_RIGHT);
    }
 
+   @Test
    public void testMiddleLeft() {
       assertNodeState("---" + "x--" + "---", MIDDLE_LEFT);
    }
 
+   @Test
    public void testCentre() {
       assertNodeState("---" + "-x-" + "---", CENTRE);
    }
 
+   @Test
    public void testMiddleRight() {
       assertNodeState("---" + "--x" + "---", MIDDLE_RIGHT);
    }
 
+   @Test
    public void testBottomLeft() {
       assertNodeState("---" + "---" + "x--", BOTTOM_LEFT);
    }
 
+   @Test
    public void testBottomCentre() {
       assertNodeState("---" + "---" + "-x-", BOTTOM_CENTRE);
    }
 
+   @Test
    public void testBottomRight() {
       assertNodeState("---" + "---" + "--x", BOTTOM_RIGHT);
    }
 
+   @Test
    public void testMix1() {
       EnumSet<Square> noughts = of(TOP_RIGHT, MIDDLE_LEFT, MIDDLE_RIGHT, BOTTOM_LEFT, BOTTOM_CENTRE);
       assertNodeState("oox" + "xox" + "xxo", noughts, complementOf(noughts));
    }
 
+   @Test
    public void testMix2() {
       EnumSet<Square> noughts = of(TOP_LEFT, TOP_RIGHT, CENTRE, BOTTOM_LEFT, BOTTOM_RIGHT);
       assertNodeState("xox" + "oxo" + "xox", noughts, complementOf(noughts));
    }
 
+   @Test
    public void testMix3() {
       assertNodeState("--o" + "x-x" + "o--", of(MIDDLE_LEFT, MIDDLE_RIGHT), of(TOP_RIGHT, BOTTOM_LEFT));
    }
 
+   @Test
    public void testInputTooBig() {
       String board = "---" + "---" + "---" + "-";
       try {
@@ -93,6 +110,7 @@ public class NoughtsAndCrossesNodeFactoryTest extends TestCase {
       }
    }
 
+   @Test
    public void testInputTooShort() {
       String board = "---" + "---" + "--";
       try {
@@ -103,6 +121,7 @@ public class NoughtsAndCrossesNodeFactoryTest extends TestCase {
       }
    }
 
+   @Test
    public void testInvalidChar() {
       // only 'x', 'o' and '-' are valid
       char[] invalid = {' ', 'X', 'O', '0', 'a', 'Z'};

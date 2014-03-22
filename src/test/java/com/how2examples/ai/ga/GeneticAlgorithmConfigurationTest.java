@@ -1,8 +1,11 @@
 package com.how2examples.ai.ga;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
 
-public class GeneticAlgorithmConfigurationTest extends TestCase {
+import org.junit.Test;
+
+public class GeneticAlgorithmConfigurationTest {
+   @Test
    public void testBigGeneration() {
       GeneticAlgorithmConfiguration config = new GeneticAlgorithmConfiguration(5000, .125, .3, .05);
       assertEquals(5000, config.getGenerationSize());
@@ -11,6 +14,7 @@ public class GeneticAlgorithmConfigurationTest extends TestCase {
       assertEquals(250, config.getNumberOfNewCandiatesToCrossover());
    }
 
+   @Test
    public void testSmallGeneration() {
       GeneticAlgorithmConfiguration config = new GeneticAlgorithmConfiguration(10, .2, .4, .3);
       assertEquals(10, config.getGenerationSize());
@@ -19,6 +23,7 @@ public class GeneticAlgorithmConfigurationTest extends TestCase {
       assertEquals(3, config.getNumberOfNewCandiatesToCrossover());
    }
 
+   @Test
    public void testSumOfRatiosEqualsOne() {
       GeneticAlgorithmConfiguration config = new GeneticAlgorithmConfiguration(10, .2, .5, .3);
       assertEquals(10, config.getGenerationSize());
@@ -27,6 +32,7 @@ public class GeneticAlgorithmConfigurationTest extends TestCase {
       assertEquals(3, config.getNumberOfNewCandiatesToCrossover());
    }
 
+   @Test
    public void testSumOfRatiosGreaterThanOne() {
       try {
          new GeneticAlgorithmConfiguration(10, .2, .5, .31);
@@ -35,6 +41,7 @@ public class GeneticAlgorithmConfigurationTest extends TestCase {
       }
    }
 
+   @Test
    public void testNegativeGenerationSize() {
       try {
          new GeneticAlgorithmConfiguration(-1, .2, .5, .3);
@@ -43,6 +50,7 @@ public class GeneticAlgorithmConfigurationTest extends TestCase {
       }
    }
 
+   @Test
    public void testNegativeFirstRatio() {
       try {
          new GeneticAlgorithmConfiguration(10, -.01, .5, .3);
@@ -51,6 +59,7 @@ public class GeneticAlgorithmConfigurationTest extends TestCase {
       }
    }
 
+   @Test
    public void testNegativeSecondRatio() {
       try {
          new GeneticAlgorithmConfiguration(10, .2, -.1, .3);
@@ -59,6 +68,7 @@ public class GeneticAlgorithmConfigurationTest extends TestCase {
       }
    }
 
+   @Test
    public void testNegativeThirdRatio() {
       try {
          new GeneticAlgorithmConfiguration(10, .2, .5, -100);
@@ -67,6 +77,7 @@ public class GeneticAlgorithmConfigurationTest extends TestCase {
       }
    }
 
+   @Test
    public void testZeroGenerationSize() {
       try {
          new GeneticAlgorithmConfiguration(0, .2, .5, .3);

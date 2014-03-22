@@ -1,22 +1,24 @@
 package com.how2examples.ai.ga;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import junit.framework.TestCase;
-
 import org.jmock.Expectations;
 import org.jmock.Mockery;
+import org.junit.Test;
 
-public class GenerationFactoryTest extends TestCase {
+public class GenerationFactoryTest {
    private final Mockery context = new Mockery();
    @SuppressWarnings("unchecked")
    private final ChromosoneFactory<Object> chromosoneFactory = context.mock(ChromosoneFactory.class);
    @SuppressWarnings("unchecked")
    private final SelectionStrategy<Object> selectionStrategy = context.mock(SelectionStrategy.class);
 
+   @Test
    public void testCreateInitialGeneration() {
       final int generationSize = 10;
       final GeneticAlgorithmConfiguration config = new GeneticAlgorithmConfiguration(generationSize, .25, .25, .25);
@@ -31,6 +33,7 @@ public class GenerationFactoryTest extends TestCase {
       assertGeneration(expected, actual);
    }
 
+   @Test
    public void testGenerateNewGeneration() {
       final int generationSize = 10;
       final GeneticAlgorithmConfiguration config = new GeneticAlgorithmConfiguration(generationSize, .2, .1, .3);

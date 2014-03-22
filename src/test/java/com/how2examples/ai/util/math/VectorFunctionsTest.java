@@ -1,22 +1,28 @@
 package com.how2examples.ai.util.math;
 
-import junit.framework.TestCase;
+import static com.how2examples.ai.TestUtils.assertExactlyEquals;
+import static org.junit.Assert.fail;
 
-public class VectorFunctionsTest extends TestCase {
+import org.junit.Test;
+
+public class VectorFunctionsTest {
+   @Test
    public void testAverageVectors() {
       final double[][] input = new double[][] { {5.3, 18, 333}, {6, -27, 800}, {10.6, 6, 1600}};
       final double[] output = VectorFunctions.averageVectors(input);
-      assertEquals(7.3, output[0]);
-      assertEquals(-1.0, output[1]);
-      assertEquals(911.0, output[2]);
+      assertExactlyEquals(7.3, output[0]);
+      assertExactlyEquals(-1.0, output[1]);
+      assertExactlyEquals(911.0, output[2]);
    }
 
+   @Test
    public void testAssertArrayLengthsMatchTrue() {
       for (int i = 0; i < 4; i++) {
          VectorFunctions.assertArrayLengthsMatch(new double[i], new double[i]);
       }
    }
 
+   @Test
    public void testAssertArrayLengthsMatchTrueFalse() {
       assertDifferentArrayLengthsCausesException(0, 1);
       assertDifferentArrayLengthsCausesException(1, 0);

@@ -1,8 +1,11 @@
 package com.how2examples.ai.problem.noughtsandcrosses;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
 
-public class SquareTest extends TestCase {
+import org.junit.Test;
+
+public class SquareTest {
+   @Test
    public void testSize() {
       assertEquals(9, Square.values().length);
    }

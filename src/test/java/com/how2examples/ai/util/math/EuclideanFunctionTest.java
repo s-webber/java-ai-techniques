@@ -1,16 +1,21 @@
 package com.how2examples.ai.util.math;
 
-import junit.framework.TestCase;
+import static com.how2examples.ai.TestUtils.assertExactlyEquals;
+import static org.junit.Assert.fail;
 
-public class EuclideanFunctionTest extends TestCase {
+import org.junit.Test;
+
+public class EuclideanFunctionTest {
    private static final EuclideanFunction TEST_OBJECT = new EuclideanFunction();
 
+   @Test
    public void test() {
-      assertEquals(0.0, TEST_OBJECT.calculate(new double[] {1, 1}, new double[] {1, 1}));
-      assertEquals(5.0, TEST_OBJECT.calculate(new double[] {2, -1}, new double[] {-2, 2}));
-      assertEquals(5.0, TEST_OBJECT.calculate(new double[] {-2, 2}, new double[] {2, -1}));
+      assertExactlyEquals(0.0, TEST_OBJECT.calculate(new double[] {1, 1}, new double[] {1, 1}));
+      assertExactlyEquals(5.0, TEST_OBJECT.calculate(new double[] {2, -1}, new double[] {-2, 2}));
+      assertExactlyEquals(5.0, TEST_OBJECT.calculate(new double[] {-2, 2}, new double[] {2, -1}));
    }
 
+   @Test
    public void testDifferentLengthArrays() {
       try {
          TEST_OBJECT.calculate(new double[] {1}, new double[] {1, 1});

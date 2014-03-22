@@ -9,18 +9,21 @@ import static com.how2examples.ai.problem.noughtsandcrosses.Square.MIDDLE_RIGHT;
 import static com.how2examples.ai.problem.noughtsandcrosses.Square.TOP_CENTRE;
 import static com.how2examples.ai.problem.noughtsandcrosses.Square.TOP_LEFT;
 import static com.how2examples.ai.problem.noughtsandcrosses.Square.TOP_RIGHT;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
 
 import java.util.EnumSet;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
 import com.how2examples.ai.minimax.MiniMaxPlayer;
 import com.how2examples.ai.minimax.MiniMaxSearch;
 
-public class NoughtsAndCrossesMiniMaxTest extends TestCase {
+public class NoughtsAndCrossesMiniMaxTest {
 
    private static final String BLANK = "---";
 
+   @Test
    public void testTakeWinningLine() {
       String t = "xxo";
       String m = "x--";
@@ -28,6 +31,7 @@ public class NoughtsAndCrossesMiniMaxTest extends TestCase {
       assertMoves(t, m, b, CENTRE);
    }
 
+   @Test
    public void testBlockImmediateWinningLine() {
       String t = "xo-";
       String m = BLANK;
@@ -35,6 +39,7 @@ public class NoughtsAndCrossesMiniMaxTest extends TestCase {
       assertMoves(t, m, b, MIDDLE_LEFT, BOTTOM_RIGHT, BOTTOM_CENTRE, CENTRE);
    }
 
+   @Test
    public void testBlockAndWinInSingleMove() {
       String t = "x-o";
       String m = "xo-";
@@ -42,6 +47,7 @@ public class NoughtsAndCrossesMiniMaxTest extends TestCase {
       assertMoves(t, m, b, BOTTOM_LEFT);
    }
 
+   @Test
    public void testWinRatherThanBlock() {
       String t = "x-x";
       String m = BLANK;
@@ -49,6 +55,7 @@ public class NoughtsAndCrossesMiniMaxTest extends TestCase {
       assertMoves(t, m, b, TOP_CENTRE);
    }
 
+   @Test
    public void testCreateFork_1() {
       String t = "x-o";
       String m = "o--";
@@ -56,6 +63,7 @@ public class NoughtsAndCrossesMiniMaxTest extends TestCase {
       assertMoves(t, m, b, BOTTOM_RIGHT, BOTTOM_CENTRE, CENTRE);
    }
 
+   @Test
    public void testCreateFork_2() {
       String t = "--o";
       String m = "--x";
@@ -63,6 +71,7 @@ public class NoughtsAndCrossesMiniMaxTest extends TestCase {
       assertMoves(t, m, b, MIDDLE_LEFT, CENTRE, TOP_LEFT);
    }
 
+   @Test
    public void testCreateFork_3() {
       String t = BLANK;
       String m = "o--";
@@ -70,6 +79,7 @@ public class NoughtsAndCrossesMiniMaxTest extends TestCase {
       assertMoves(t, m, b, CENTRE, TOP_RIGHT, TOP_LEFT);
    }
 
+   @Test
    public void testAvoidOpponentFork_1() {
       String t = "--x";
       String m = "-o-";
@@ -77,6 +87,7 @@ public class NoughtsAndCrossesMiniMaxTest extends TestCase {
       assertMoves(t, m, b, BOTTOM_CENTRE, TOP_CENTRE, TOP_LEFT, BOTTOM_RIGHT, MIDDLE_RIGHT, MIDDLE_LEFT);
    }
 
+   @Test
    public void testAvoidOpponentFork_2() {
       String t = BLANK;
       String m = BLANK;
@@ -84,10 +95,12 @@ public class NoughtsAndCrossesMiniMaxTest extends TestCase {
       assertMoves(t, m, b, CENTRE, TOP_CENTRE, MIDDLE_RIGHT, MIDDLE_LEFT, TOP_LEFT, TOP_RIGHT);
    }
 
+   @Test
    public void testFullGame() {
       assertMoves(BLANK, BLANK, BLANK, BOTTOM_RIGHT, CENTRE, BOTTOM_CENTRE, BOTTOM_LEFT, TOP_RIGHT, MIDDLE_RIGHT, MIDDLE_LEFT, TOP_CENTRE, TOP_LEFT);
    }
 
+   @Test
    public void testAfterFirstMoveCentre() {
       String t = BLANK;
       String m = "-x-";
@@ -95,6 +108,7 @@ public class NoughtsAndCrossesMiniMaxTest extends TestCase {
       assertMoves(t, m, b, BOTTOM_RIGHT, BOTTOM_CENTRE, TOP_CENTRE, MIDDLE_RIGHT, MIDDLE_LEFT, BOTTOM_LEFT, TOP_RIGHT, TOP_LEFT);
    }
 
+   @Test
    public void testAfterFirstMoveTopCentre() {
       String t = "-x-";
       String m = BLANK;

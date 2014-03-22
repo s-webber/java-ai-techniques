@@ -1,20 +1,24 @@
 package com.how2examples.ai.ga;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
 import com.google.common.collect.ImmutableList;
 import com.how2examples.ai.util.Randomiser;
 
-public class FitnessProportionateSelectionStrategyTest extends TestCase {
+public class FitnessProportionateSelectionStrategyTest {
+   @Test
    public void testEvenSplit() {
       List<Chromosone<Object>> input = createInput(1, 1, 1);
       assertGetInstance(input, .3333, .6666);
    }
 
+   @Test
    public void testUnevenSplit() {
       List<Chromosone<Object>> input = createInput(80, 19, 1);
       assertGetInstance(input, .7999, .9899);

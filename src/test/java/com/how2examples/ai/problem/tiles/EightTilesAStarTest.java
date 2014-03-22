@@ -9,39 +9,46 @@ import static com.how2examples.ai.problem.tiles.Tile.E;
 import static com.how2examples.ai.problem.tiles.Tile.F;
 import static com.how2examples.ai.problem.tiles.Tile.G;
 import static com.how2examples.ai.problem.tiles.Tile.H;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.EnumMap;
 import java.util.LinkedList;
 import java.util.List;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
 import com.how2examples.ai.search.AStarSearchStrategy;
 import com.how2examples.ai.search.TreeSearch;
 import com.how2examples.ai.search.TreeSearchStrategy;
 
-public class EightTilesAStarTest extends TestCase {
+public class EightTilesAStarTest {
    private static final Tile _ = null;
 
    private static final Tile[] GOAL = {A, B, C, D, E, F, G, H, _};
 
+   @Test
    public void testAlreadyComplete() {
       final Tile[][] expectedSequence = {GOAL};
       assertSequence(expectedSequence);
    }
 
+   @Test
    public void testOneMoveRequired() {
       final Tile[][] expectedSequence = { {A, B, C, D, E, F, G, _, H}, GOAL};
 
       assertSequence(expectedSequence);
    }
 
+   @Test
    public void testTwoMovesRequired() {
       final Tile[][] expectedSequence = { {A, B, C, D, E, F, _, G, H}, {A, B, C, D, E, F, G, _, H}, GOAL};
 
       assertSequence(expectedSequence);
    }
 
+   @Test
    public void testComplex1() {
       final Tile[][] expectedSequence = {
                // starting position:
@@ -73,6 +80,7 @@ public class EightTilesAStarTest extends TestCase {
       assertSequence(expectedSequence);
    }
 
+   @Test
    public void testComplex2() {
       final Tile[][] expectedSequence = {
                // starting position:
@@ -110,6 +118,7 @@ public class EightTilesAStarTest extends TestCase {
       assertSequence(expectedSequence);
    }
 
+   @Test
    public void testComplex3() {
       final Tile[][] expectedSequence = {
                // starting position:
@@ -147,6 +156,7 @@ public class EightTilesAStarTest extends TestCase {
       assertSequence(expectedSequence);
    }
 
+   @Test
    public void testComplex4() {
       final Tile[][] expectedSequence = {
                // starting position:

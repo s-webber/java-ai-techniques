@@ -1,8 +1,12 @@
 package com.how2examples.ai.problem.queens;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
-public class QueensConfigurationTest extends TestCase {
+import org.junit.Test;
+
+public class QueensConfigurationTest {
+   @Test
    public void test1x1() {
       final QueensConfiguration c = new QueensConfiguration(1);
       assertEquals(1, c.getBoardWidth());
@@ -10,6 +14,7 @@ public class QueensConfigurationTest extends TestCase {
       assertEquals(1, c.getCoverage(0, 0));
    }
 
+   @Test
    public void test3x3() {
       final int boardWidth = 3;
       final int a3 = 1;
@@ -47,6 +52,7 @@ public class QueensConfigurationTest extends TestCase {
       assertEquals(allSquares - b3 - a2, c.getCoverage(2, 2));
    }
 
+   @Test
    public void test0x0() {
       try {
          new QueensConfiguration(0);
@@ -56,6 +62,7 @@ public class QueensConfigurationTest extends TestCase {
       }
    }
 
+   @Test
    public void test9x9() {
       try {
          new QueensConfiguration(9);

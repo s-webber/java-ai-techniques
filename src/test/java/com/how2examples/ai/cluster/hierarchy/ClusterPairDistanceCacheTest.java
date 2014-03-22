@@ -1,12 +1,15 @@
 package com.how2examples.ai.cluster.hierarchy;
 
-import junit.framework.TestCase;
+import static com.how2examples.ai.TestUtils.assertExactlyEquals;
+
+import org.junit.Test;
 
 import com.how2examples.ai.util.math.DistanceFunction;
 
-public class ClusterPairDistanceCacheTest extends TestCase {
+public class ClusterPairDistanceCacheTest {
    private final double[] distances = {7896.25, -0.25, 9};
 
+   @Test
    public void test() {
       final ClusterPairDistanceCache cache = new ClusterPairDistanceCache(new DummyDistanceFunction());
 
@@ -14,11 +17,11 @@ public class ClusterPairDistanceCacheTest extends TestCase {
       final HierarchicalCluster c2 = new DummyHierarchicalCluster();
       final HierarchicalCluster c3 = new DummyHierarchicalCluster();
 
-      assertEquals(distances[0], cache.getOrCreate(new ClusterPair(c1, c2)));
-      assertEquals(distances[0], cache.getOrCreate(new ClusterPair(c2, c1)));
-      assertEquals(distances[1], cache.getOrCreate(new ClusterPair(c1, c3)));
-      assertEquals(distances[2], cache.getOrCreate(new ClusterPair(c2, c3)));
-      assertEquals(distances[0], cache.getOrCreate(new ClusterPair(c1, c2)));
+      assertExactlyEquals(distances[0], cache.getOrCreate(new ClusterPair(c1, c2)));
+      assertExactlyEquals(distances[0], cache.getOrCreate(new ClusterPair(c2, c1)));
+      assertExactlyEquals(distances[1], cache.getOrCreate(new ClusterPair(c1, c3)));
+      assertExactlyEquals(distances[2], cache.getOrCreate(new ClusterPair(c2, c3)));
+      assertExactlyEquals(distances[0], cache.getOrCreate(new ClusterPair(c1, c2)));
    }
 
    private class DummyDistanceFunction implements DistanceFunction {

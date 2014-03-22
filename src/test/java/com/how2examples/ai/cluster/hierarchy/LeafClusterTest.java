@@ -1,28 +1,35 @@
 package com.how2examples.ai.cluster.hierarchy;
 
-import junit.framework.TestCase;
+import static com.how2examples.ai.TestUtils.assertExactlyEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
+
+import org.junit.Test;
 
 import com.how2examples.ai.util.ImmutableListFactory;
 import com.how2examples.ai.util.data.DataSetRow;
 
-public class LeafClusterTest extends TestCase {
+public class LeafClusterTest {
+   @Test
    public void testGetId() {
       final LeafCluster c = createLeafCluster();
       assertEquals("xyz", c.getId());
    }
 
+   @Test
    public void testGetChildren() {
       final LeafCluster c = createLeafCluster();
       assertSame(ImmutableListFactory.emptyList(), c.getChildren());
    }
 
+   @Test
    public void testGetVector() {
       final LeafCluster c = createLeafCluster();
       final double[] vector = c.getVector();
       assertEquals(3, vector.length);
-      assertEquals(9.0, vector[0]);
-      assertEquals(1.5, vector[1]);
-      assertEquals(3.0, vector[2]);
+      assertExactlyEquals(9.0, vector[0]);
+      assertExactlyEquals(1.5, vector[1]);
+      assertExactlyEquals(3.0, vector[2]);
    }
 
    /**
@@ -30,11 +37,12 @@ public class LeafClusterTest extends TestCase {
     * <p>
     * i.e. changes to a returned array do not alter the values stored in LeafCluster.
     */
+   @Test
    public void testGetVectorReturnsCopy() {
       final LeafCluster c = createLeafCluster();
-      assertEquals(1.5, c.getVector()[1]);
+      assertExactlyEquals(1.5, c.getVector()[1]);
       c.getVector()[1] = 6.75;
-      assertEquals(1.5, c.getVector()[1]);
+      assertExactlyEquals(1.5, c.getVector()[1]);
    }
 
    private LeafCluster createLeafCluster() {

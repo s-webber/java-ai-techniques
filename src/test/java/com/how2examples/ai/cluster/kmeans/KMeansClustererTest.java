@@ -2,7 +2,9 @@ package com.how2examples.ai.cluster.kmeans;
 
 import static com.how2examples.ai.TestUtils.getDataSet;
 import static org.junit.Assert.assertArrayEquals;
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 
 import com.google.common.collect.ImmutableList;
 import com.how2examples.ai.util.Randomiser;
@@ -10,7 +12,8 @@ import com.how2examples.ai.util.data.DataSet;
 import com.how2examples.ai.util.data.DataSetRow;
 import com.how2examples.ai.util.math.EuclideanFunction;
 
-public class KMeansClustererTest extends TestCase {
+public class KMeansClustererTest {
+   @Test
    public void testOneCluster() {
       final int numberOfClusters = 1;
       final ImmutableList<KMeansCluster> clusters = createClusters(numberOfClusters);
@@ -20,6 +23,7 @@ public class KMeansClustererTest extends TestCase {
       assertArrayEquals(new double[] {145.75, 132.75}, cluster.getCentroid(), 0);
    }
 
+   @Test
    public void testTwoClusters() {
       final int numberOfClusters = 2;
       final ImmutableList<KMeansCluster> clusters = createClusters(numberOfClusters);
@@ -28,6 +32,7 @@ public class KMeansClustererTest extends TestCase {
       assertMembers(clusters.get(1), "B", "D", "E", "H", "I", "J", "K");
    }
 
+   @Test
    public void testThreeClusters() {
       final int numberOfClusters = 3;
       final ImmutableList<KMeansCluster> clusters = createClusters(numberOfClusters);
@@ -37,6 +42,7 @@ public class KMeansClustererTest extends TestCase {
       assertMembers(clusters.get(2), "G");
    }
 
+   @Test
    public void testMoreClustersThanDataSetRows() {
       final int numberOfClusters = 13;
       final ImmutableList<KMeansCluster> clusters = createClusters(numberOfClusters);

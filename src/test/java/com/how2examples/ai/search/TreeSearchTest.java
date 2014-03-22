@@ -1,23 +1,30 @@
 package com.how2examples.ai.search;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
-public class TreeSearchTest extends TestCase {
+import org.junit.Test;
+
+public class TreeSearchTest {
+   @Test
    public void testBreadthFirstSearch() {
       final String sequence = generateSearchPath(new BreadthFirstSearchStrategy<DummyHeuristicSearchNode>(), true);
       assertEquals("A, B, C, D, E, F, G, H, I, J, K, L, M, N", sequence);
    }
 
+   @Test
    public void testDepthFirstSearch() {
       final String sequence = generateSearchPath(new DepthFirstSearchStrategy<DummyHeuristicSearchNode>(), true);
       assertEquals("A, B, D, I, J, E, K, L, M, C, F, N", sequence);
    }
 
+   @Test
    public void testDepthLimitedSearch() {
       final String sequence = generateSearchPath(new DepthLimitedSearchStrategy<DummyHeuristicSearchNode>(2), false);
       assertEquals("A, B, D, E, C, F, G, H", sequence);
    }
 
+   @Test
    public void testIterativeDepthFirstSearch() {
       final DummyHeuristicSearchNode rootNode = generateExampleSearchTree();
       final DummyHeuristicSearchNode result = IterativeDepthFirstSearch.search(rootNode, 4);
@@ -26,11 +33,13 @@ public class TreeSearchTest extends TestCase {
       assertEquals("A, B, C, A, B, D, E, C, F, G, H, A, B, D, I, J, E, K, L, M, C, F, N", sequence);
    }
 
+   @Test
    public void testGreedySearch() {
       final String sequence = generateSearchPath(new GreedySearchStrategy<DummyHeuristicSearchNode>(), true);
       assertEquals("A, B, D, I, E, J, C, H, O, F, N", sequence);
    }
 
+   @Test
    public void testAStarSearch() {
       final String sequence = generateSearchPath(new AStarSearchStrategy<DummyHeuristicSearchNode>(), true);
       assertEquals("A, B, C, D, E, H, I, F, N", sequence);

@@ -1,8 +1,12 @@
 package com.how2examples.ai.problem.tiles;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
-public class GridPositionTest extends TestCase {
+import org.junit.Test;
+
+public class GridPositionTest {
+   @Test
    public void test() {
       // confirm each GridPosition refers to a unique element of a 3x3 grid
       final GridPosition[][] grid = new GridPosition[3][3];

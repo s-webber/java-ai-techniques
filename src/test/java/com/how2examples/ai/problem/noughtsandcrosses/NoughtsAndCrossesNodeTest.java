@@ -8,26 +8,31 @@ import static com.how2examples.ai.problem.noughtsandcrosses.Square.CENTRE;
 import static com.how2examples.ai.problem.noughtsandcrosses.Square.MIDDLE_LEFT;
 import static com.how2examples.ai.problem.noughtsandcrosses.Square.TOP_CENTRE;
 import static com.how2examples.ai.problem.noughtsandcrosses.Square.TOP_RIGHT;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotSame;
 
 import java.util.EnumSet;
 import java.util.Map;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
 import com.how2examples.ai.minimax.MiniMaxPlayer;
 
-public class NoughtsAndCrossesNodeTest extends TestCase {
+public class NoughtsAndCrossesNodeTest {
    /** On first move, all 9 squares should be suggested as potential next moves */
+   @Test
    public void testEmpty() {
       assertChildren("---" + "---" + "---", Square.values());
    }
 
    /** If a player can complete a line on their next move, that move should be the only suggestion made */
+   @Test
    public void testPlayer1WinningMove() {
       assertChildren("x-o" + "-o-" + "x--", MIDDLE_LEFT);
    }
 
    /** If a player can complete a line on their next move, that move should be the only suggestion made */
+   @Test
    public void testPlayer2WinningMove() {
       assertChildren("x-o" + "-ox" + "--x", BOTTOM_LEFT);
    }
@@ -37,6 +42,7 @@ public class NoughtsAndCrossesNodeTest extends TestCase {
     * <p>
     * (If no winning option for self.)
     */
+   @Test
    public void testPlayer1BlockWinningMove() {
       assertChildren("o-o" + "x--" + "--x", TOP_CENTRE);
    }
@@ -46,25 +52,30 @@ public class NoughtsAndCrossesNodeTest extends TestCase {
     * <p>
     * (If no winning option for self.)
     */
+   @Test
    public void testPlayer2BlockWinningMove() {
       assertChildren("x-x" + "---" + "--o", TOP_CENTRE);
    }
 
    /** Taking a winning line takes priority over blocking possible winning line of opponent */
+   @Test
    public void testPlayer1WinningMoveTakesPriorityOverBlock() {
       assertChildren("x-o" + "--o" + "x--", MIDDLE_LEFT);
    }
 
    /** Taking a winning line takes priority over blocking possible winning line of opponent */
+   @Test
    public void testPlayer2WinningMoveTakesPriorityOverBlock() {
       assertChildren("xo-" + "-o-" + "x-x", BOTTOM_CENTRE);
    }
 
    /** If no option to take or block a winning line, all remaining squares should be suggested */
+   @Test
    public void testAllFreeSquaresSuggested() {
       assertChildren("xo-" + "--x" + "---", TOP_RIGHT, MIDDLE_LEFT, CENTRE, BOTTOM_LEFT, BOTTOM_CENTRE, BOTTOM_RIGHT);
    }
 
+   @Test
    public void testCopyOfState() {
       // test getCopyOfState() returns a copy (not the same version)
       NoughtsAndCrossesNode n = createNoughtsAndCrossesNode("x-o" + "-o-" + "--x");

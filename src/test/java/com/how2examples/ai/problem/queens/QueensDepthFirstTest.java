@@ -1,43 +1,40 @@
 package com.how2examples.ai.problem.queens;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
 
 import com.how2examples.ai.search.DepthFirstSearchStrategy;
 import com.how2examples.ai.search.TreeSearch;
 
-public class QueensDepthFirstTest extends TestCase {
+public class QueensDepthFirstTest {
    private static final boolean Q = true;
    private static final boolean _ = false;
 
+   @Test
    public void testOneQueen() {
       boolean[][] expectedSolution = {{Q}};
       assertFindSolution(expectedSolution);
    }
 
+   @Test
    public void testTwoQueens() {
       // impossible - so expect null
       assertNull(findSolution(2));
    }
 
+   @Test
    public void testFourQueens() {
-      boolean[][] expectedSolution = { 
-               {_, Q, _, _}, 
-               {_, _, _, Q}, 
-               {Q, _, _, _}, 
-               {_, _, Q, _}};
+      boolean[][] expectedSolution = { {_, Q, _, _}, {_, _, _, Q}, {Q, _, _, _}, {_, _, Q, _}};
       assertFindSolution(expectedSolution);
    }
 
+   @Test
    public void testEightQueens() {
-      boolean[][] expectedSolution = { 
-               {Q, _, _, _, _, _, _, _}, 
-               {_, _, _, _, Q, _, _, _}, 
-               {_, _, _, _, _, _, _, Q}, 
-               {_, _, _, _, _, Q, _, _}, 
-               {_, _, Q, _, _, _, _, _}, 
-               {_, _, _, _, _, _, Q, _}, 
-               {_, Q, _, _, _, _, _, _}, 
-               {_, _, _, Q, _, _, _, _}};
+      boolean[][] expectedSolution = { {Q, _, _, _, _, _, _, _}, {_, _, _, _, Q, _, _, _}, {_, _, _, _, _, _, _, Q}, {_, _, _, _, _, Q, _, _}, {_, _, Q, _, _, _, _, _}, {_, _, _, _, _, _, Q, _}, {_, Q, _, _, _, _, _, _}, {_, _, _, Q, _, _, _, _}};
       assertFindSolution(expectedSolution);
    }
 

@@ -2,15 +2,19 @@ package com.how2examples.ai.decisiontree;
 
 import static com.how2examples.ai.TestUtils.createDataSet;
 import static com.how2examples.ai.TestUtils.getDataSet;
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
+import org.junit.Test;
 
 import com.how2examples.ai.util.data.DataSet;
 import com.how2examples.ai.util.data.DataSetRow;
 
-public class DecisionTreeTest extends TestCase {
+public class DecisionTreeTest {
    private static final DecisionTreeStrategy STRATEGY = new InformationGainStrategy();
    private static final DecisionTreeGenerator GENERATOR = new DecisionTreeGenerator(STRATEGY);
 
+   @Test
    public void testOneInputColumn() {
       final DataSet dataSet = createDataSet("header1,header2\n" //
                                             + "a,x\n"
@@ -32,6 +36,7 @@ public class DecisionTreeTest extends TestCase {
       assertEquals(expectedTree, actualTree);
    }
 
+   @Test
    public void testTwoInputColumns() {
       final DataSet dataSet = createDataSet("header1,header2,header3\n" //
                                             + "a,2,w\n"
@@ -63,6 +68,7 @@ public class DecisionTreeTest extends TestCase {
       assertEquals(expectedTree, actualTree);
    }
 
+   @Test
    public void testSuccess() {
       final DataSet dataSet = getDataSet(getClass());
       final DecisionTreeNode result = GENERATOR.generateTree(dataSet);
@@ -98,6 +104,7 @@ public class DecisionTreeTest extends TestCase {
       }
    }
 
+   @Test
    public void testOnlyOneOutcome() {
       final DataSet dataSet = createDataSet("header1,header2\n" //
                                             + "a,x\n"
@@ -116,6 +123,7 @@ public class DecisionTreeTest extends TestCase {
     * the decision tree generator should throw an exception. (This is expected as, in the current implementation, each
     * leaf node of the tree can only represent a single outcome.)
     */
+   @Test
    public void testNotSolveable() {
       final DataSet dataSet = createDataSet("header1,header2\n" //
                                             + "a,x\n"

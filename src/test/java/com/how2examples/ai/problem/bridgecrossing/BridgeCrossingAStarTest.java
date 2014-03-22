@@ -4,11 +4,16 @@ import static com.how2examples.ai.problem.bridgecrossing.Move.A;
 import static com.how2examples.ai.problem.bridgecrossing.Move.A_B;
 import static com.how2examples.ai.problem.bridgecrossing.Move.B;
 import static com.how2examples.ai.problem.bridgecrossing.Move.C_D;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
 import com.how2examples.ai.search.AStarSearchStrategy;
 import com.how2examples.ai.search.TreeSearch;
@@ -16,9 +21,10 @@ import com.how2examples.ai.search.TreeSearch;
 /**
  * Uses {@link AStarSearchStrategy} to solve the bridge crossing problem represented by {@link BridgeCrossingNode}.
  */
-public class BridgeCrossingAStarTest extends TestCase {
+public class BridgeCrossingAStarTest {
    private static final int TARGET_TIME = 17;
 
+   @Test
    public void test() {
       final BridgeCrossingNode goalState = findGoalState();
       assertNotNull(goalState);
