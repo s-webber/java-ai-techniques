@@ -15,7 +15,16 @@ interface ChromosoneFactory {
 
 interface SelectionStrategy
 
-interface Chromosone
+class FitnessProportionateSelectionStrategy
+
+class Chromosone {
++getFitness()
++getValue()
+}
+
+class Object
+
+.Chromosone o-- Object 
 
 class GeneticAlgorithmConfiguration
 
@@ -25,16 +34,19 @@ GenerationFactory .> Generation : creates
 
 ChromosoneFactory .> Chromosone : creates
 
-Generation ..> Chromosone : contains
+Generation o-- Chromosone : contains
 
 GenerationFactory o-- ChromosoneFactory
-SelectionStrategy -o GenerationFactory 
-GenerationFactory o-- GeneticAlgorithmConfiguration
+SelectionStrategy -left-o GenerationFactory 
+GeneticAlgorithmConfiguration -right-o GenerationFactory
+
+.SelectionStrategy <|-- FitnessProportionateSelectionStrategy
 
 namespace com.how2examples.ai.problem.tsp {
 .ChromosoneFactory <|-- TravellingSalesPersonChromosoneFactory
 }
 
 show ChromosoneFactory method
+show Chromosone method
 
 @enduml
