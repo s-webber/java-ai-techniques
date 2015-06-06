@@ -1,7 +1,7 @@
 java-ai-techniques
 ==================
 
-[![Build Status](https://travis-ci.org/webber-s/java-ai-techniques.png?branch=master)](https://travis-ci.org/webber-s/java-ai-techniques)
+[![Build Status](https://travis-ci.org/s-webber/java-ai-techniques.png?branch=master)](https://travis-ci.org/s-webber/java-ai-techniques)
 
 ## About
 
@@ -17,8 +17,6 @@ The techniques have been implemented using Java 7 and Google Guava. The unit tes
 
 ## Building
 
-The project can be built using Maven, including the production of a code coverage report using JaCoCo.
+The project can be built using Maven and Java 7 by executing the following from the command line: `mvn package`. Once you have executed this command, you will be able to view the JaCoCo test coverage report in the `target\site\jacoco` directory.
 
-e.g.: `mvn package`
-
-Javadoc can be produced by doing: `mvn javadoc:javadoc` and will be output to: `target/site/apidocs`
+Javadoc can be produced by executing the following from the command line: `mvn javadoc:javadoc`. Once you have executed this command, you will be able to view the Javadoc in the `target\site\apidocs` directory.
