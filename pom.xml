@@ -6,7 +6,7 @@
 	<packaging>jar</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>java-ai-techniques</name>
-	<url>https://github.com/webber-s/java-ai-techniques</url>
+	<url>https://github.com/s-webber/java-ai-techniques</url>
 
 	<properties>
 		<maven.compiler.source>7</maven.compiler.source>
