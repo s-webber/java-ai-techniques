@@ -1,0 +1,22 @@
+@startuml DecisionTree.png
+hide members
+
+class DecisionTreeGenerator {
++generateTree(DataSet)
+}
+show DecisionTreeGenerator method
+DecisionTreeGenerator o-- DecisionTreeStrategy
+DecisionTreeGenerator ..> DecisionTreeNode
+
+interface DecisionTreeNode
+class OutcomeNode
+class ChoiceNode
+DecisionTreeNode <|-- OutcomeNode
+DecisionTreeNode <|-- ChoiceNode
+ChoiceNode o-- DecisionTreeNode
+
+interface DecisionTreeStrategy
+class InformationGainStrategy
+DecisionTreeStrategy <|-- InformationGainStrategy
+
+@enduml

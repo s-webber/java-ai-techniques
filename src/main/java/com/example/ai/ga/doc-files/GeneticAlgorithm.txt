@@ -1,0 +1,52 @@
+@startuml GeneticAlgorithm.png
+hide members
+
+class GeneticAlgorithmController
+
+class GenerationFactory
+
+class Generation
+
+interface ChromosoneFactory {
++create()
++mutate(T)
++crossover(T,T)
+}
+
+interface SelectionStrategy
+
+class FitnessProportionateSelectionStrategy
+
+class Chromosone {
++getFitness()
++getValue()
+}
+
+class Object
+
+.Chromosone o-- Object 
+
+class GeneticAlgorithmConfiguration
+
+GeneticAlgorithmController ..> GenerationFactory
+
+GenerationFactory .> Generation : creates
+
+ChromosoneFactory .> Chromosone : creates
+
+Generation o-- Chromosone : contains
+
+GenerationFactory o-- ChromosoneFactory
+SelectionStrategy -left-o GenerationFactory 
+GeneticAlgorithmConfiguration -right-o GenerationFactory
+
+.SelectionStrategy <|-- FitnessProportionateSelectionStrategy
+
+namespace com.example.ai.problem.tsp {
+.ChromosoneFactory <|-- TravellingSalesPersonChromosoneFactory
+}
+
+show ChromosoneFactory method
+show Chromosone method
+
+@enduml
