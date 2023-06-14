@@ -10,17 +10,18 @@ import static com.example.ai.problem.tsp.TravellingSalesPersonTestUtils.SOU;
 import static com.example.ai.problem.tsp.TravellingSalesPersonTestUtils.createLocations;
 import static com.example.ai.util.ImmutableListFactory.createList;
 import static java.util.Arrays.asList;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import com.google.common.collect.ImmutableList;
 import com.example.ai.ga.Chromosone;
 import com.example.ai.util.Randomiser;
+import com.google.common.collect.ImmutableList;
 
 public class TravellingSalesPersonChromosoneCreatorTest {
    /** NOR repeated twice. */
@@ -35,7 +36,7 @@ public class TravellingSalesPersonChromosoneCreatorTest {
    private final TravellingSalesPersonChromosoneCreator creator = new TravellingSalesPersonChromosoneCreator(locations, randomiser);
 
    @Test
-   public void testCreate() throws Exception {
+   public void testCreate() {
       final List<String> expected = asList(NOR, NCL, MAN, BHX, EXT, SOU);
 
       context.checking(new Expectations() {
@@ -53,7 +54,7 @@ public class TravellingSalesPersonChromosoneCreatorTest {
 
    /** Test mid-range values returned from randomiser. */
    @Test
-   public void testMutate1() throws Exception {
+   public void testMutate1() {
       ImmutableList<String> input = createList(SOU, EXT, MAN, BHX, NCL, NOR);
       ImmutableList<String> expectedOutput = createList(SOU, NCL, MAN, BHX, EXT, NOR);
 
@@ -63,7 +64,7 @@ public class TravellingSalesPersonChromosoneCreatorTest {
 
    /** Test small/large values returned from randomiser. */
    @Test
-   public void testMutate2() throws Exception {
+   public void testMutate2() {
       ImmutableList<String> input = createList(BHX, MAN, EXT, SOU, NOR, NCL);
       ImmutableList<String> expectedOutput = createList(NCL, MAN, EXT, SOU, NOR, BHX);
 
@@ -73,21 +74,21 @@ public class TravellingSalesPersonChromosoneCreatorTest {
 
    /** Test duplicate values returned from randomiser. */
    @Test
-   public void testMutate3() throws Exception {
+   public void testMutate3() {
       ImmutableList<String> input = createList(MAN, EXT, SOU, NOR, BHX, NCL);
       ImmutableList<String> expectedOutput = createList(MAN, EXT, NOR, SOU, BHX, NCL);
 
       assertMutation(input, expectedOutput, 0.5, 0.5);
    }
 
-   @Test(expected = IllegalArgumentException.class)
-   public void testMutateRepeatedLocation() throws Exception {
-      creator.mutate(INVALID_LIST_REPEATED_LOCATION);
+   @Test
+   public void testMutateRepeatedLocation() {
+      assertThrows(IllegalArgumentException.class, () -> creator.mutate(INVALID_LIST_REPEATED_LOCATION));
    }
 
-   @Test(expected = IllegalArgumentException.class)
-   public void testMutateUnknownLocation() throws Exception {
-      creator.mutate(INVALID_LIST_UNKNOWN_LOCATION);
+   @Test
+   public void testMutateUnknownLocation() {
+      assertThrows(IllegalArgumentException.class, () -> creator.mutate(INVALID_LIST_UNKNOWN_LOCATION));
    }
 
    /** Test when the two inputs are equal. */
@@ -125,34 +126,34 @@ public class TravellingSalesPersonChromosoneCreatorTest {
       assertCrossover(input1, input2, expected);
    }
 
-   @Test(expected = IllegalArgumentException.class)
-   public void testCrossoverRepeatedLocationInput1() throws Exception {
-      creator.crossover(INVALID_LIST_REPEATED_LOCATION, locationNames);
+   @Test
+   public void testCrossoverRepeatedLocationInput1() {
+      assertThrows(IllegalArgumentException.class, () -> creator.crossover(INVALID_LIST_REPEATED_LOCATION, locationNames));
    }
 
-   @Test(expected = IllegalArgumentException.class)
-   public void testCrossoverUnknownLocationInput1() throws Exception {
-      creator.crossover(INVALID_LIST_UNKNOWN_LOCATION, locationNames);
+   @Test
+   public void testCrossoverUnknownLocationInput1() {
+      assertThrows(IllegalArgumentException.class, () -> creator.crossover(INVALID_LIST_UNKNOWN_LOCATION, locationNames));
    }
 
-   @Test(expected = IllegalArgumentException.class)
-   public void testCrossoverRepeatedLocationInput2() throws Exception {
-      creator.crossover(locationNames, INVALID_LIST_REPEATED_LOCATION);
+   @Test
+   public void testCrossoverRepeatedLocationInput2() {
+      assertThrows(IllegalArgumentException.class, () -> creator.crossover(locationNames, INVALID_LIST_REPEATED_LOCATION));
    }
 
-   @Test(expected = IllegalArgumentException.class)
-   public void testCrossoverUnknownLocationInput2() throws Exception {
-      creator.crossover(locationNames, INVALID_LIST_UNKNOWN_LOCATION);
+   @Test
+   public void testCrossoverUnknownLocationInput2() {
+      assertThrows(IllegalArgumentException.class, () -> creator.crossover(locationNames, INVALID_LIST_UNKNOWN_LOCATION));
    }
 
-   @Test(expected = IllegalArgumentException.class)
-   public void testCrossoverRepeatedLocationBothInputs() throws Exception {
-      creator.crossover(INVALID_LIST_REPEATED_LOCATION, INVALID_LIST_REPEATED_LOCATION);
+   @Test
+   public void testCrossoverRepeatedLocationBothInputs() {
+      assertThrows(IllegalArgumentException.class, () -> creator.crossover(INVALID_LIST_REPEATED_LOCATION, INVALID_LIST_REPEATED_LOCATION));
    }
 
-   @Test(expected = IllegalArgumentException.class)
-   public void testCrossoverUnknownLocationBothInputs() throws Exception {
-      creator.crossover(INVALID_LIST_UNKNOWN_LOCATION, INVALID_LIST_UNKNOWN_LOCATION);
+   @Test
+   public void testCrossoverUnknownLocationBothInputs() {
+      assertThrows(IllegalArgumentException.class, () -> creator.crossover(INVALID_LIST_UNKNOWN_LOCATION, INVALID_LIST_UNKNOWN_LOCATION));
    }
 
    private void assertMutation(ImmutableList<String> input, ImmutableList<String> expected, final double d1, final double d2) {

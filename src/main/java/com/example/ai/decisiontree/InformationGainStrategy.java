@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.google.common.collect.ImmutableList;
 import com.example.ai.util.data.DataSetRow;
+import com.google.common.collect.ImmutableList;
 
 /**
  * Calculates information gain, based on the concept of entropy.
@@ -54,7 +54,7 @@ public class InformationGainStrategy implements DecisionTreeStrategy {
          final String value = line.getValue(columnIndex);
          Integer frequency = frequencies.get(value);
          if (frequency == null) {
-            frequency = new Integer(1);
+            frequency = 1;
          } else {
             frequency++;
          }

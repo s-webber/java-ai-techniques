@@ -1,9 +1,9 @@
 package com.example.ai.util.math;
 
 import static com.example.ai.TestUtils.assertExactlyEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class VectorFunctionsTest {
    @Test

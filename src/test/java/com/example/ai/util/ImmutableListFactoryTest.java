@@ -1,14 +1,14 @@
 package com.example.ai.util;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.google.common.collect.ImmutableList;
 
@@ -44,6 +44,7 @@ public class ImmutableListFactoryTest {
    }
 
    /** Test that have properly understood behaviour of Guava's ImmutableList. */
+   @SuppressWarnings("deprecation")
    @Test
    public void testImmutable() {
       final List<String> input = Arrays.asList(FIRST, SECOND, THIRD);

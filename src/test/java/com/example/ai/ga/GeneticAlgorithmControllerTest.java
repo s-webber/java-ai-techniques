@@ -1,11 +1,11 @@
 package com.example.ai.ga;
 
-import static org.junit.Assert.assertSame;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
-import org.jmock.lib.legacy.ClassImposteriser;
-import org.junit.Test;
+import org.jmock.imposters.ByteBuddyClassImposteriser;
+import org.junit.jupiter.api.Test;
 
 public class GeneticAlgorithmControllerTest {
    @SuppressWarnings("unchecked")
@@ -46,7 +46,7 @@ public class GeneticAlgorithmControllerTest {
 
    private Mockery createContext() {
       final Mockery context = new Mockery();
-      context.setImposteriser(ClassImposteriser.INSTANCE);
+      context.setImposteriser(ByteBuddyClassImposteriser.INSTANCE);
       return context;
    }
 }

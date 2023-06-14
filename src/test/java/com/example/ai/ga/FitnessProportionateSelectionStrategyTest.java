@@ -1,15 +1,15 @@
 package com.example.ai.ga;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import com.google.common.collect.ImmutableList;
 import com.example.ai.util.Randomiser;
+import com.google.common.collect.ImmutableList;
 
 public class FitnessProportionateSelectionStrategyTest {
    @Test

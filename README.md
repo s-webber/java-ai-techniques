@@ -1,7 +1,7 @@
 java-ai-techniques
 ==================
 
-[![Build Status](https://travis-ci.org/s-webber/java-ai-techniques.png?branch=master)](https://travis-ci.org/s-webber/java-ai-techniques)
+[![Build Status](https://github.com/s-webber/java-ai-techniques/actions/workflows/github-actions.yml/badge.svg)](https://github.com/s-webber/java-ai-techniques/actions/)
 
 ## About
 

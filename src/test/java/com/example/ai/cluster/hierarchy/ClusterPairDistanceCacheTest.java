@@ -2,7 +2,7 @@ package com.example.ai.cluster.hierarchy;
 
 import static com.example.ai.TestUtils.assertExactlyEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.example.ai.util.math.DistanceFunction;
 

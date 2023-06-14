@@ -1,10 +1,10 @@
 package com.example.ai.cluster.hierarchy;
 
 import static com.example.ai.TestUtils.assertExactlyEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.example.ai.util.ImmutableListFactory;
 import com.example.ai.util.data.DataSetRow;

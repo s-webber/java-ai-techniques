@@ -1,11 +1,11 @@
 package com.example.ai.problem.queens;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.example.ai.search.DepthFirstSearchStrategy;
 import com.example.ai.search.TreeSearch;
@@ -28,18 +28,26 @@ public class QueensDepthFirstTest {
 
    @Test
    public void testFourQueens() {
-      boolean[][] expectedSolution = { {_, Q, _, _}, {_, _, _, Q}, {Q, _, _, _}, {_, _, Q, _}};
+      boolean[][] expectedSolution = {{_, Q, _, _}, {_, _, _, Q}, {Q, _, _, _}, {_, _, Q, _}};
       assertFindSolution(expectedSolution);
    }
 
    @Test
    public void testEightQueens() {
-      boolean[][] expectedSolution = { {Q, _, _, _, _, _, _, _}, {_, _, _, _, Q, _, _, _}, {_, _, _, _, _, _, _, Q}, {_, _, _, _, _, Q, _, _}, {_, _, Q, _, _, _, _, _}, {_, _, _, _, _, _, Q, _}, {_, Q, _, _, _, _, _, _}, {_, _, _, Q, _, _, _, _}};
+      boolean[][] expectedSolution = {
+                  {Q, _, _, _, _, _, _, _},
+                  {_, _, _, _, Q, _, _, _},
+                  {_, _, _, _, _, _, _, Q},
+                  {_, _, _, _, _, Q, _, _},
+                  {_, _, Q, _, _, _, _, _},
+                  {_, _, _, _, _, _, Q, _},
+                  {_, Q, _, _, _, _, _, _},
+                  {_, _, _, Q, _, _, _, _}};
       assertFindSolution(expectedSolution);
    }
 
    private void assertFindSolution(boolean[][] expectedSolution) {
-      assertEquals("board is not square", expectedSolution.length, expectedSolution[0].length);
+      assertEquals(expectedSolution.length, expectedSolution[0].length, "board is not square");
 
       final int boardWidth = expectedSolution.length;
       final QueensNode actualSolution = findSolution(boardWidth);

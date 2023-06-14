@@ -8,13 +8,13 @@ import static com.example.ai.problem.noughtsandcrosses.Square.CENTRE;
 import static com.example.ai.problem.noughtsandcrosses.Square.MIDDLE_LEFT;
 import static com.example.ai.problem.noughtsandcrosses.Square.TOP_CENTRE;
 import static com.example.ai.problem.noughtsandcrosses.Square.TOP_RIGHT;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotSame;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 import java.util.EnumSet;
 import java.util.Map;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.example.ai.minimax.MiniMaxPlayer;
 

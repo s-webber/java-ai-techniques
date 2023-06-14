@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 
 import com.example.ai.util.data.DataSet;
 import com.example.ai.util.data.DelimitedTextFileReader;
@@ -46,7 +46,7 @@ public class TestUtils {
    }
 
    public static void assertExactlyEquals(double expected, double actual) {
-      Assert.assertEquals(expected, actual, 0);
+      Assertions.assertEquals(expected, actual, 0);
    }
 
    private static File createTempFile() {

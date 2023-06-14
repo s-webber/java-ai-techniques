@@ -1,9 +1,10 @@
 package com.example.ai.ann;
 
 import static com.example.ai.TestUtils.assertExactlyEquals;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class NeuralNetworkTest {
    @Test
@@ -26,16 +27,16 @@ public class NeuralNetworkTest {
       assertXor(0, 0, false);
    }
 
-   @Test(expected = IllegalArgumentException.class)
+   @Test
    public void testTooFewInputs() {
       NeuralNetwork nn = createXorNeuralNetwork();
-      nn.activate(new double[] {1}); // specify 1 input instead of the required 2
+      assertThrows(IllegalArgumentException.class, () -> nn.activate(new double[] {1})); // specify 1 input instead of the required 2
    }
 
-   @Test(expected = IllegalArgumentException.class)
+   @Test
    public void testTooManyInputs() {
       NeuralNetwork nn = createXorNeuralNetwork();
-      nn.activate(new double[] {1, 1, 1}); // specify 3 inputs instead of the required 2
+      assertThrows(IllegalArgumentException.class, () -> nn.activate(new double[] {1, 1, 1})); // specify 3 inputs instead of the required 2
    }
 
    private void assertXor(double input1, double input2, boolean expected) {
@@ -44,7 +45,7 @@ public class NeuralNetworkTest {
    }
 
    private NeuralNetwork createXorNeuralNetwork() {
-      final double[][][] weights = { { {-1, -1, 1.5}, {-1, -1, 0.5}}, {{1, -1, -0.5}}};
+      final double[][][] weights = {{{-1, -1, 1.5}, {-1, -1, 0.5}}, {{1, -1, -0.5}}};
       return NeuralNetworkFactory.create(weights, new BinaryStepFunction());
    }
 

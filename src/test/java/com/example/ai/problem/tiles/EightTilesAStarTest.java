@@ -9,15 +9,15 @@ import static com.example.ai.problem.tiles.Tile.E;
 import static com.example.ai.problem.tiles.Tile.F;
 import static com.example.ai.problem.tiles.Tile.G;
 import static com.example.ai.problem.tiles.Tile.H;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.EnumMap;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.example.ai.search.AStarSearchStrategy;
 import com.example.ai.search.TreeSearch;

@@ -1,9 +1,9 @@
 package com.example.ai.ann;
 
 import static com.example.ai.TestUtils.assertExactlyEquals;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class LogisticFunctionTest {
    private static final double DELTA = 0.001;

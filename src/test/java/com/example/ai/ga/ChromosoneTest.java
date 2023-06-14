@@ -1,9 +1,9 @@
 package com.example.ai.ga;
 
 import static com.example.ai.TestUtils.assertExactlyEquals;
-import static org.junit.Assert.assertSame;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ChromosoneTest {
    @Test

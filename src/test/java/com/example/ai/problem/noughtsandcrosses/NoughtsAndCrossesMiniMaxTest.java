@@ -9,12 +9,12 @@ import static com.example.ai.problem.noughtsandcrosses.Square.MIDDLE_RIGHT;
 import static com.example.ai.problem.noughtsandcrosses.Square.TOP_CENTRE;
 import static com.example.ai.problem.noughtsandcrosses.Square.TOP_LEFT;
 import static com.example.ai.problem.noughtsandcrosses.Square.TOP_RIGHT;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertSame;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 import java.util.EnumSet;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.example.ai.minimax.MiniMaxPlayer;
 import com.example.ai.minimax.MiniMaxSearch;

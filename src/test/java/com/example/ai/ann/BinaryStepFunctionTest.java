@@ -2,7 +2,7 @@ package com.example.ai.ann;
 
 import static com.example.ai.TestUtils.assertExactlyEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class BinaryStepFunctionTest {
    private final BinaryStepFunction f = new BinaryStepFunction();
